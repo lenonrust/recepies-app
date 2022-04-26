@@ -37,7 +37,7 @@ function Header({ title }) {
 
         </button>
       ) : ('') }
-      { isVisible && <InputSearchHeader />}
+      { isVisible && <InputSearchHeader title={ title } />}
     </div>
   );
 }
