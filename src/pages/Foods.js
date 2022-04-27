@@ -22,6 +22,7 @@ function Foods() {
 
   useEffect(() => {
     initialFood();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
