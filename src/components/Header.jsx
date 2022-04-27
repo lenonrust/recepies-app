@@ -29,7 +29,6 @@ function Header({ title }) {
           type="button"
           onClick={ () => setIsVisible(!isVisible) }
         >
-          Search
           <img
             data-testid="search-top-btn"
             src={ searchIcon }
