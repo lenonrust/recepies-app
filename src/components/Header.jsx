@@ -29,6 +29,7 @@ function Header({ title }) {
           type="button"
           onClick={ () => setIsVisible(!isVisible) }
         >
+          Search
           <img
             data-testid="search-top-btn"
             src={ searchIcon }
@@ -43,10 +44,7 @@ function Header({ title }) {
 }
 
 Header.propTypes = {
-  title: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
-}.isRequired;
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;

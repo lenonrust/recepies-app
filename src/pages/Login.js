@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 const MAX_PASSWORD = 6;
 
-const Login = ({ history }) => {
+const Login = () => {
+  const history = useHistory();
   const [loginState, setLoginstate] = useState({
     emailInput: '',
     password: '',
@@ -22,6 +23,7 @@ const Login = ({ history }) => {
 
   return (
     <div>
+      <h1>TRYBE RECEPES</h1>
       <form>
         <label htmlFor="email-input">
           E-mail:
@@ -56,12 +58,6 @@ const Login = ({ history }) => {
       </form>
     </div>
   );
-};
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
 };
 
 export default Login;
