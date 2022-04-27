@@ -23,11 +23,16 @@ function InputSearchHeader({ title }) {
       const dataFood = await handleFoodSearch(inputText, type);
       if (dataFood) {
         setFoods(dataFood);
+      } else if (dataFood === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     } else if (title.includes('Drink')) {
       const dataDrinks = await handleDrinksSearch(inputText, type);
+      console.log(dataDrinks);
       if (dataDrinks) {
         setDrinks(dataDrinks);
+      } else if (dataDrinks === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     }
   };

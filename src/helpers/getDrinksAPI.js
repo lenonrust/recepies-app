@@ -13,10 +13,13 @@ const handleDrinksSearch = async (inputText, type) => {
   default:
     url = '';
   }
-
-  const respose = await fetch(url);
-  const data = await respose.json();
-  return data.drinks;
+  try {
+    const respose = await fetch(url);
+    const data = await respose.json();
+    return data.drinks;
+  } catch (error) {
+    return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  }
 };
 
 export default handleDrinksSearch;
