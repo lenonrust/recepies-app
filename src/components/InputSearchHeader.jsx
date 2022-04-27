@@ -28,7 +28,6 @@ function InputSearchHeader({ title }) {
       }
     } else if (title.includes('Drink')) {
       const dataDrinks = await handleDrinksSearch(inputText, type);
-      console.log(dataDrinks);
       if (dataDrinks) {
         setDrinks(dataDrinks);
       } else if (dataDrinks === null) {
