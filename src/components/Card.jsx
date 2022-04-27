@@ -3,7 +3,6 @@ import './Card.css';
 
 function Card(element) {
   const { index, name, img } = element;
-  console.log(element);
   return (
     <div className="card-item" data-testid={ `${index}-recipe-card` }>
       <img data-testid={ `${index}-card-img` } src={ img } alt={ name } />
