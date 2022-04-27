@@ -43,10 +43,7 @@ function Header({ title }) {
 }
 
 Header.propTypes = {
-  title: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }),
-}.isRequired;
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;
