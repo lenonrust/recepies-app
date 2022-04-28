@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendationCard from '../components/RecommendationCard';
+import './DrinkDetails.css';
 
 const FIFTEEN = 15;
 
@@ -17,7 +18,6 @@ function DrinkDetails(props) {
       setDetails(data.drinks[0]);
     };
     searchDrinks();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterIngredients = () => {
@@ -34,9 +34,7 @@ function DrinkDetails(props) {
 
   useEffect(() => {
     setIngredient(filterIngredients());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [details]);
-  // const { strYoutube } = details;
 
   return (
     <div>
@@ -70,16 +68,17 @@ function DrinkDetails(props) {
         </p>
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
-      <iframe
+      {/* <iframe
         data-testid="video"
         title="myvideo"
         width="420"
         height="315"
         src={ (details.strVideo) && details.strVideo.replace('watch?v=', 'embed/') }
         frameBorder="0"
-      />
-      <RecommendationCard />
+      /> */}
+      <RecommendationCard title="Drinks" />
       <button
+        className="start-recipe-btn"
         data-testid="start-recipe-btn"
         type="button"
       >

@@ -22,7 +22,6 @@ function Drinks() {
 
   useEffect(() => {
     initialDrink();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendationCard from '../components/RecommendationCard';
+import './FoodDetails.css';
 
 const TWENTY = 20;
 
@@ -17,7 +18,6 @@ function FoodDetails(props) {
       setDetails(data.meals[0]);
     };
     searchMeals();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterIngredients = () => {
@@ -34,9 +34,7 @@ function FoodDetails(props) {
 
   useEffect(() => {
     setIngredient(filterIngredients());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [details]);
-  // const { strYoutube } = details;
 
   return (
     <div>
@@ -73,13 +71,14 @@ function FoodDetails(props) {
       <iframe
         data-testid="video"
         title="myvideo"
-        width="420"
-        height="315"
+        width="320"
+        height="200"
         src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
         frameBorder="0"
       />
-      <RecommendationCard />
+      <RecommendationCard title="Meals" />
       <button
+        className="start-recipe-btn"
         data-testid="start-recipe-btn"
         type="button"
       >

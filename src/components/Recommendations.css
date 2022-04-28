@@ -1,0 +1,22 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+}
+
+.carousel {
+  align-self: center;
+  display: flex;
+  overflow-y: scroll;
+  width: 100vw;
+}
+
+.slide-card img {
+  height: 170px;
+}
+
+.slide-card {
+  margin: 0 5px;
+}
