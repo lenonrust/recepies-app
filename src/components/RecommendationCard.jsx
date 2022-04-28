@@ -1,9 +1,11 @@
 import React from 'react';
 import './Card.css';
 
-function RecommendationCard(index) {
+function RecommendationCard() {
   return (
-    <div className="card-item" data-testid={ `${index}-recomendation-card` } />
+    <div className="card-item" data-testid="0-recomendation-card">
+      <p>recomendation</p>
+    </div>
   );
 }
 

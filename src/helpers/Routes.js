@@ -13,6 +13,7 @@ import ExploreFoodsByIngredients from '../pages/ExploreFoodsByIngredients';
 import ExploreFoodsByNationalities from '../pages/ExploreFoodsByNationalities';
 import ExploreDrinksByIngredients from '../pages/ExploreDrinksByIngredients';
 import FoodDetails from '../pages/FoodDetails';
+import DrinkDetails from '../pages/DrinkDetails';
 
 function Routes() {
   return (
@@ -43,6 +44,7 @@ function Routes() {
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/foods/:id" component={ FoodDetails } />
+      <Route exact path="/drinks/:id" component={ DrinkDetails } />
     </Switch>
   );
 }

@@ -4,7 +4,7 @@ import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendationCard from '../components/RecommendationCard';
 
-const TWENTY = 20;
+const FIFTEEN = 15;
 
 function DrinkDetails(props) {
   const { match: { params: { id } } } = props;
@@ -12,9 +12,9 @@ function DrinkDetails(props) {
   const [ingredient, setIngredient] = useState([]);
   useEffect(() => {
     const searchDrinks = async () => {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
-      setDetails(data.meals[0]);
+      setDetails(data.drinks[0]);
     };
     searchDrinks();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,7 +22,7 @@ function DrinkDetails(props) {
 
   const filterIngredients = () => {
     const array = [];
-    for (let index = 1; index <= TWENTY; index += 1) {
+    for (let index = 1; index <= FIFTEEN; index += 1) {
       if (details[`strIngredient${index}`] !== ''
       && details[`strIngredient${index}`] !== null) {
         array
@@ -44,10 +44,10 @@ function DrinkDetails(props) {
         width="150px"
         height="150px"
         data-testid="recipe-photo"
-        src={ details.strMealThumb }
-        alt={ details.strMeal }
+        src={ details.strDrinkThumb }
+        alt={ details.strDrink }
       />
-      <h2 data-testid="recipe-title">{ details.strMeal }</h2>
+      <h2 data-testid="recipe-title">{ details.strDrink }</h2>
       <button
         data-testid="share-btn"
         type="button"
@@ -60,24 +60,25 @@ function DrinkDetails(props) {
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>
-      <h3 data-testid="recipe-category">{details.strCategory}</h3>
+      <h3 data-testid="recipe-category">{details.strAlcoholic}</h3>
       {ingredient.map((itr, index) => (
         <p
           key={ `ingredient${index}` }
-          data-testid={ `${details.index}-ingredient-name-and-measure` }
+          data-testid={ `${index}-ingredient-name-and-measure` }
         >
           {itr}
         </p>
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
       <iframe
+        data-testid="video"
         title="myvideo"
         width="420"
         height="315"
-        src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
+        src={ (details.strVideo) && details.strVideo.replace('watch?v=', 'embed/') }
         frameBorder="0"
       />
-      <RecommendationCard index="1" />
+      <RecommendationCard />
       <button
         data-testid="start-recipe-btn"
         type="button"

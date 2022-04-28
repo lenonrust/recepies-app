@@ -64,20 +64,21 @@ function FoodDetails(props) {
       {ingredient.map((itr, index) => (
         <p
           key={ `ingredient${index}` }
-          data-testid={ `${details.index}-ingredient-name-and-measure` }
+          data-testid={ `${index}-ingredient-name-and-measure` }
         >
           {itr}
         </p>
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
       <iframe
+        data-testid="video"
         title="myvideo"
         width="420"
         height="315"
         src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
         frameBorder="0"
       />
-      <RecommendationCard index="1" />
+      <RecommendationCard />
       <button
         data-testid="start-recipe-btn"
         type="button"
