@@ -7,7 +7,9 @@ function Profile() {
   const history = useHistory();
   const [profileEmail, setProfileEmail] = useState('');
   useEffect(() => {
-    setProfileEmail(JSON.parse(localStorage.getItem('user')).email);
+    if (JSON.parse(localStorage.getItem('user'))) {
+      setProfileEmail(JSON.parse(localStorage.getItem('user')).email);
+    }
   }, []);
 
   const logout = () => {
