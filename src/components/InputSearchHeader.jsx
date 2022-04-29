@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import handleFoodSearch from '../helpers/getMealsAPI';
@@ -6,11 +6,8 @@ import handleDrinksSearch from '../helpers/getDrinksAPI';
 import searchContext from '../context/searchContext';
 
 function InputSearchHeader({ title }) {
-  const [search, setSearch] = useState({
-    inputText: '',
-    type: 'ingredient',
-  });
-  const { foods, setFoods, drinks, setDrinks } = useContext(searchContext);
+  const { foods, setFoods, drinks,
+    setDrinks, search, setSearch } = useContext(searchContext);
   const handleChange = ({ target }) => {
     setSearch({ ...search, type: target.value });
   };
@@ -35,6 +32,7 @@ function InputSearchHeader({ title }) {
       }
     }
   };
+
   return (
     <>
       { foods.length === 1
