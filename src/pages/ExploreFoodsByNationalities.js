@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+const TWELV = 12;
+
 function ExploreFoodsbyNationalities() {
   const [nationality, setNationality] = useState([]);
   const [actualNationality, serActualNationality] = useState('American');
@@ -51,7 +53,7 @@ function ExploreFoodsbyNationalities() {
           ))}
         </select>
       </form>
-      {cards.map((card) => (
+      {cards.slice(0, TWELV).map((card) => (
         <button
           data-testid={ `${card.strMeal}-category-filter` }
           type="button"

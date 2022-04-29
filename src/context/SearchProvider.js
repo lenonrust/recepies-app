@@ -9,8 +9,9 @@ function SearchProvider({ children }) {
     inputText: '',
     type: 'ingredient',
   });
-  const [clickButton, setClickButton] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [ingredient, setIngredient] = useState('');
+
   const contexValue = {
     foods,
     setFoods,
@@ -18,10 +19,10 @@ function SearchProvider({ children }) {
     setDrinks,
     search,
     setSearch,
-    clickButton,
-    setClickButton,
     isVisible,
     setIsVisible,
+    ingredient,
+    setIngredient,
   };
 
   return (

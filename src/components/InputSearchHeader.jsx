@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import handleFoodSearch from '../helpers/getMealsAPI';
@@ -6,10 +6,8 @@ import handleDrinksSearch from '../helpers/getDrinksAPI';
 import searchContext from '../context/searchContext';
 
 function InputSearchHeader({ title }) {
-  // const [search, setSearch] = useState();
   const { foods, setFoods, drinks,
-    setDrinks, search, setSearch,
-    setClickButton, clickButton } = useContext(searchContext);
+    setDrinks, search, setSearch } = useContext(searchContext);
   const handleChange = ({ target }) => {
     setSearch({ ...search, type: target.value });
   };
@@ -33,13 +31,8 @@ function InputSearchHeader({ title }) {
         global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     }
-    setClickButton(false);
   };
-  useEffect(() => {
-    if (clickButton) {
-      onSearch();
-    }
-  }, [clickButton]);
+
   return (
     <>
       { foods.length === 1
@@ -91,7 +84,7 @@ function InputSearchHeader({ title }) {
         <button
           data-testid="exec-search-btn"
           type="button"
-          onClick={ () => setClickButton(true) }
+          onClick={ onSearch }
         >
           Search
         </button>

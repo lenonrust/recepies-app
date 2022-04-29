@@ -9,15 +9,22 @@ const TWELVE = 12;
 const FIVE = 5;
 function Foods() {
   const history = useHistory();
-  const { foods, setFoods } = useContext(searchContext);
+  const { foods, setFoods,
+    ingredient, setIngredient } = useContext(searchContext);
   const [foodCategory, setFoodCategory] = useState([]);
   const [toggleFilter, setToggleFilter] = useState('');
 
   const initialFood = async () => {
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    let url = '';
+    if (ingredient.length > 1) {
+      url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+    } else { url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='; }
+
+    const response = await fetch(url);
     const data = await response.json();
     setFoods(data.meals);
     setToggleFilter('');
+    setIngredient('');
   };
 
   useEffect(() => {

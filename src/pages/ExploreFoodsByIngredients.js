@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import searchContext from '../context/searchContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import searchContext from '../context/searchContext';
 
 const TWELV = 12;
 
 function ExploreFoodsbyIngredients() {
   const [ingredients, setIngredients] = useState();
-  const { setSearch, setClickButton, setIsVisible } = useContext(searchContext);
   const history = useHistory();
+  const { setIngredient } = useContext(searchContext);
 
   const handleIngredients = async () => {
     const url = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
@@ -26,9 +26,7 @@ function ExploreFoodsbyIngredients() {
   }
 
   const handleSearchIngredient = (ingredient) => {
-    setSearch({ inputText: ingredient, type: 'ingredient' });
-    setIsVisible(true);
-    setClickButton(true);
+    setIngredient(ingredient);
     history.push('/foods');
   };
   return (

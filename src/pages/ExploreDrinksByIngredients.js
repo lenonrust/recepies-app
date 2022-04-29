@@ -8,7 +8,7 @@ const TWELV = 12;
 
 function ExploreDrinksbyIngredients() {
   const [ingredients, setIngredients] = useState();
-  const { setSearch, setClickButton, setIsVisible } = useContext(searchContext);
+  const { setIngredient } = useContext(searchContext);
   const history = useHistory();
 
   const handleIngredients = async () => {
@@ -25,9 +25,7 @@ function ExploreDrinksbyIngredients() {
     return '';
   }
   const handleSearchIngredient = (ingredient) => {
-    setSearch({ inputText: ingredient, type: 'ingredient' });
-    setIsVisible(true);
-    setClickButton(true);
+    setIngredient(ingredient);
     history.push('/drinks');
   };
   return (
