@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import RecommendationCard from '../components/RecommendationCard';
-import './FoodDetails.css';
 
 const TWENTY = 20;
 
-function FoodDetails(props) {
-  const history = useHistory();
+function FoodInProgress(props) {
   const { match: { params: { id } } } = props;
   const [details, setDetails] = useState({});
   const [ingredient, setIngredient] = useState([]);
@@ -32,28 +28,6 @@ function FoodDetails(props) {
       }
     }
     return array;
-  };
-
-  const favoriteRecipe = () => {
-    const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    const favoriteObject = {
-      id: details.idMeal,
-      type: 'food',
-      nationality: details.strArea,
-      category: details.strCategory,
-      alcoholicOrNot: details.strAlcoholic,
-      name: details.strMeal,
-      image: details.strMealThumb,
-    };
-    if (!localData) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
-    } else if (localData.some((element) => element.id === favoriteObject.id)) {
-      localStorage.setItem('favoriteRecipes', JSON
-        .stringify(localData.filter((data) => data.id !== favoriteObject.id)));
-    } else {
-      localStorage.setItem('favoriteRecipes', JSON
-        .stringify([...localData, favoriteObject]));
-    }
   };
 
   useEffect(() => {
@@ -79,7 +53,6 @@ function FoodDetails(props) {
       <button
         data-testid="favorite-btn"
         type="button"
-        onClick={ favoriteRecipe }
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>
@@ -93,35 +66,24 @@ function FoodDetails(props) {
         </p>
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
-      <iframe
-        data-testid="video"
-        title="myvideo"
-        width="320"
-        height="200"
-        src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
-        frameBorder="0"
-      />
-      <RecommendationCard title="Meals" />
       <button
         className="start-recipe-btn"
         data-testid="start-recipe-btn"
         type="button"
-        // Tela de receita em progresso de comida: /foods/{id-da-receita}/in-progress;
-        onClick={ () => history.push(`/foods/${details.idMeal}/in-progress`) }
       >
-        Start Recipe
+        Finish Recipe
       </button>
     </div>
   );
 }
 
-FoodDetails.propTypes = {
+FoodInProgress.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string }) }),
 }.isRequired;
 
-export default FoodDetails;
+export default FoodInProgress;
 
 // https://www.youtube.com/watch?v=4aZr5hZXP_s
 // https://www.youtube.com/embed/4aZr5hZXP_s
