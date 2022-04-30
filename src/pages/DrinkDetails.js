@@ -36,6 +36,28 @@ function DrinkDetails(props) {
     setIngredient(filterIngredients());
   }, [details]);
 
+  const favoriteRecipe = () => {
+    const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const favoriteObject = {
+      id: details.idDrink,
+      type: 'drink',
+      nationality: '',
+      category: details.strCategory,
+      alcoholicOrNot: details.strAlcoholic,
+      name: details.strDrink,
+      image: details.strDrinkThumb,
+    };
+    if (!localData) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
+    } else if (localData.some((element) => element.id === favoriteObject.id)) {
+      localStorage.setItem('favoriteRecipes', JSON
+        .stringify(localData.filter((data) => data.id !== favoriteObject.id)));
+    } else {
+      localStorage.setItem('favoriteRecipes', JSON
+        .stringify([...localData, favoriteObject]));
+    }
+  };
+
   return (
     <div>
       <img
@@ -55,6 +77,7 @@ function DrinkDetails(props) {
       <button
         data-testid="favorite-btn"
         type="button"
+        onClick={ favoriteRecipe }
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>

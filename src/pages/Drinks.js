@@ -11,13 +11,18 @@ function Drinks() {
   const history = useHistory();
   const [drinkCategory, setDrinkCategory] = useState([]);
   const [toggleFilter, setToggleFilter] = useState('');
-  const { drinks, setDrinks } = useContext(searchContext);
+  const { drinks, setDrinks, ingredient, setIngredient } = useContext(searchContext);
 
   const initialDrink = async () => {
-    const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    let url = '';
+    if (ingredient.length > 1) {
+      url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+    } else { url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='; }
+    const response = await fetch(url);
     const data = await response.json();
     setDrinks(data.drinks);
     setToggleFilter('');
+    setIngredient('');
   };
 
   useEffect(() => {
