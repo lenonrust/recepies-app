@@ -16,12 +16,21 @@ function DrinkDetails(props) {
   const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [ingredient, setIngredient] = useState([]);
   const [hideButton, setHideButtonButton] = useState(false);
+  const [buttonName, setButtonName] = useState('Start Recipe');
 
   const validateButton = () => {
     const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
     if (storageData) {
       return (storageData && storageData.some((recipe) => recipe.id === id));
     } return false;
+  };
+
+  const verifyProgress = () => {
+    const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const drinkData = storageData.cocktails;
+    if (drinkData[id]) {
+      setButtonName('Continue Recipe');
+    }
   };
 
   useEffect(() => {
@@ -32,6 +41,7 @@ function DrinkDetails(props) {
     };
     searchDrinks();
     setHideButtonButton(!validateButton());
+    verifyProgress();
   }, []);
 
   const copyToShare = () => {
@@ -121,7 +131,7 @@ function DrinkDetails(props) {
           type="button"
           onClick={ () => history.push(`/drinks/${details.idDrink}/in-progress`) }
         >
-          Start Recipe
+          {buttonName}
         </button>)}
     </div>
   );

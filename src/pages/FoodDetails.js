@@ -18,6 +18,7 @@ function FoodDetails(props) {
   const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [favBtn, setFavBtn] = useState('favorito');
   const [hideButton, setHideButtonButton] = useState(false);
+  const [buttonName, setButtonName] = useState('Start Recipe');
 
   const verifyFavorite = () => {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -35,8 +36,17 @@ function FoodDetails(props) {
   const validateButton = () => {
     const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
     if (storageData) {
-      return (storageData && storageData.some((recipe) => recipe.id === id));
+      return (storageData.some((recipe) => recipe.id === id));
     } return false;
+  };
+
+  const verifyProgress = () => {
+    const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const foodData = storageData.meals;
+    console.log(storageData, foodData);
+    if (foodData[id]) {
+      setButtonName('Continue Recipe');
+    }
   };
 
   useEffect(() => {
@@ -48,13 +58,14 @@ function FoodDetails(props) {
     searchMeals();
     verifyFavorite();
     setHideButtonButton(!validateButton());
+    verifyProgress();
   }, []);
 
   const filterIngredients = () => {
     const array = [];
     for (let index = 1; index <= TWENTY; index += 1) {
       if (details[`strIngredient${index}`] !== ''
-      && details[`strIngredient${index}`] !== null) {
+        && details[`strIngredient${index}`] !== null) {
         array
           .push(`${details[`strIngredient${index}`]}: ${details[`strMeasure${index}`]}`);
       }
@@ -100,7 +111,7 @@ function FoodDetails(props) {
         src={ details.strMealThumb }
         alt={ details.strMeal }
       />
-      <h2 data-testid="recipe-title">{ details.strMeal }</h2>
+      <h2 data-testid="recipe-title">{details.strMeal}</h2>
       <button
         data-testid="share-btn"
         type="button"
@@ -116,7 +127,7 @@ function FoodDetails(props) {
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>
-      { displayClipboardMessage && <span>Link copied!</span> }
+      {displayClipboardMessage && <span>Link copied!</span>}
       <h3 data-testid="recipe-category">{details.strCategory}</h3>
       {ingredient.map((itr, index) => (
         <p
@@ -143,8 +154,8 @@ function FoodDetails(props) {
           type="button"
           onClick={ () => history.push(`/foods/${details.idMeal}/in-progress`) }
         >
-          Start Recipe
-        </button>) }
+          {buttonName}
+        </button>)}
 
     </div>
   );
@@ -153,7 +164,9 @@ function FoodDetails(props) {
 FoodDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string }) }),
+      id: PropTypes.string,
+    }),
+  }),
 }.isRequired;
 
 export default FoodDetails;
