@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 
-function DoneRecipesCard({ doneRecipes }) {
-  const { index, name, img, category, date, tags } = doneRecipes;
-  console.log(doneRecipes);
+const copy = require('clipboard-copy');
+
+function DoneRecipesCard({ doneRecipes, index }) {
+  const { name, image, category, doneDate, tags,
+    nationality, type, id, alcoholicOrNot } = doneRecipes;
+  const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
+
+  const copyToShare = () => {
+    setDisplayClipboardMessage(true);
+    copy(`http://localhost:3000/foods/${id}`);
+  };
+
   return (
     <div>
-      <img data-testid={ `${index}-horizontal-image` } src={ img } alt={ name } />
-      <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
-      <p data-testid={ `${index}-horizontal-name` }>{name}</p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{date}</p>
+      <Link to={ `${type}s/${id}` }>
+        <img
+          className="card-item"
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+      </Link>
+      <p data-testid={ `${index}-horizontal-top-text` }>
+        { type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot }
+      </p>
+      <Link to={ `${type}s/${id}` }>
+        <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+      </Link>
+      <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
       <button
-        data-testid={ `${index}-horizontal-share-btn` }
         type="button"
+        onClick={ copyToShare }
       >
-        <img src={ shareIcon } alt="shareIcon" />
+        <img
+          src={ shareIcon }
+          alt="shareIcon"
+          data-testid={ `${index}-horizontal-share-btn` }
+        />
       </button>
+      { displayClipboardMessage && <span>Link copied!</span> }
       {tags && tags.map((tag) => (
         <p
           data-testid={ `${index}-${tag}-horizontal-tag` }
@@ -33,15 +59,9 @@ DoneRecipesCard.propTypes = {
   image: PropTypes.string,
   category: PropTypes.string,
   name: PropTypes.string,
-  date: PropTypes.string,
+  doneDate: PropTypes.string,
   index: PropTypes.number,
   tags: PropTypes.array,
 }.isRequired;
 
 export default DoneRecipesCard;
-
-// data-testid="${index}-horizontal-top-text"
-// data-testid="${index}-horizontal-name";
-// O texto da data que a receita foi feita deve ter o atributo data-testid="${index}-horizontal-done-date";
-// O elemento de compartilhar a receita deve ter o atributo data-testid="${index}-horizontal-share-btn";
-// As tags da receita devem possuir o atributo data-testid=${index}-${tagName}-horizontal-tag;

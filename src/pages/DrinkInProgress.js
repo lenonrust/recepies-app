@@ -23,6 +23,7 @@ function DrinkInProgress(props) {
     setDisplayClipboardMessage(true);
     const url = window.location.href;
     copy(url.replace('/in-progress', ''));
+    console.log(details, new Date());
   };
 
   // const verifyFavorite = () => {
@@ -98,6 +99,26 @@ function DrinkInProgress(props) {
         .filter((element) => element !== target.name);
       setIngredientList([...newIngredientList]);
     }
+  };
+
+  const finishRecipe = () => {
+    const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    const recipeTags = !details.strTags && ''; // para casos em que o campo strTags retorna Null da API
+    const myRecipe = {
+      id,
+      type: 'drink',
+      nationality: '',
+      category: details.strCategory,
+      alcoholicOrNot: details.strAlcoholic,
+      name: details.strDrink,
+      image: details.strDrinkThumb,
+      doneDate: new Date(),
+      tags: recipeTags.split(','),
+    };
+    if (storageData) {
+      localStorage.setItem('doneRecipes', JSON.stringify([...storageData, myRecipe]));
+    } else localStorage.setItem('doneRecipes', JSON.stringify([myRecipe]));
+    history.push('/done-recipes');
   };
 
   // const favoriteRecipe = () => {
@@ -178,7 +199,7 @@ function DrinkInProgress(props) {
         data-testid="finish-recipe-btn"
         type="button"
         disabled={ !allIngredientsChecked }
-        onClick={ () => history.push('/done-recipes') }
+        onClick={ finishRecipe }
       >
         Finish Recipe
       </button>

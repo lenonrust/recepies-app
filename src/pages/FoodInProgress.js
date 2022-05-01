@@ -100,6 +100,26 @@ function FoodInProgress(props) {
     }
   };
 
+  const finishRecipe = () => {
+    const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    const recipeTags = !details.strTags && ''; // para tratar casos em que o campo strTags retorna Null da API
+    const myRecipe = {
+      id,
+      type: 'food',
+      nationality: details.strArea,
+      category: details.strCategory,
+      alcoholicOrNot: '',
+      name: details.strMeal,
+      image: details.strMealThumb,
+      doneDate: new Date(),
+      tags: recipeTags.split(','),
+    };
+    if (storageData) {
+      localStorage.setItem('doneRecipes', JSON.stringify([...storageData, myRecipe]));
+    } else localStorage.setItem('doneRecipes', JSON.stringify([myRecipe]));
+    history.push('/done-recipes');
+  };
+
   // const favoriteRecipe = () => {
   //   const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
   //   const favoriteObject = {
@@ -179,7 +199,7 @@ function FoodInProgress(props) {
         data-testid="finish-recipe-btn"
         type="button"
         disabled={ !allIngredientsChecked }
-        onClick={ () => history.push('/done-recipes') }
+        onClick={ finishRecipe }
       >
         Finish Recipe
       </button>
