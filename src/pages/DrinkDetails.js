@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendationCard from '../components/RecommendationCard';
 import './DrinkDetails.css';
 
 const FIFTEEN = 15;
+const copy = require('clipboard-copy');
 
 function DrinkDetails(props) {
+  const history = useHistory();
   const { match: { params: { id } } } = props;
   const [details, setDetails] = useState({});
+  const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [ingredient, setIngredient] = useState([]);
+
   useEffect(() => {
     const searchDrinks = async () => {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -19,6 +24,12 @@ function DrinkDetails(props) {
     };
     searchDrinks();
   }, []);
+
+  const copyToShare = () => {
+    setDisplayClipboardMessage(true);
+    const url = window.location.href;
+    copy(url);
+  };
 
   const filterIngredients = () => {
     const array = [];
@@ -71,6 +82,7 @@ function DrinkDetails(props) {
       <button
         data-testid="share-btn"
         type="button"
+        onClick={ copyToShare }
       >
         <img src={ shareIcon } alt="shareIcon" />
       </button>
@@ -81,6 +93,7 @@ function DrinkDetails(props) {
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>
+      { displayClipboardMessage && <span>Link copied!</span> }
       <h3 data-testid="recipe-category">{details.strAlcoholic}</h3>
       {ingredient.map((itr, index) => (
         <p
@@ -91,19 +104,12 @@ function DrinkDetails(props) {
         </p>
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
-      {/* <iframe
-        data-testid="video"
-        title="myvideo"
-        width="420"
-        height="315"
-        src={ (details.strVideo) && details.strVideo.replace('watch?v=', 'embed/') }
-        frameBorder="0"
-      /> */}
       <RecommendationCard title="Drinks" />
       <button
         className="start-recipe-btn"
         data-testid="start-recipe-btn"
         type="button"
+        onClick={ () => history.push(`/drinks/${details.idDrink}/in-progress`) }
       >
         Start Recipe
       </button>

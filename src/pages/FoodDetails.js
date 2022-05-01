@@ -8,12 +8,14 @@ import './FoodDetails.css';
 
 const TWENTY = 20;
 const FAVORITE_CHECKED = 'favorite-checked';
+const copy = require('clipboard-copy');
 
 function FoodDetails(props) {
   const history = useHistory();
   const { match: { params: { id } } } = props;
   const [details, setDetails] = useState({});
   const [ingredient, setIngredient] = useState([]);
+  const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [favBtn, setFavBtn] = useState('favorito');
 
   const verifyFavorite = () => {
@@ -21,6 +23,12 @@ function FoodDetails(props) {
     if (localData && localData.some((element) => element.id === id)) {
       setFavBtn(FAVORITE_CHECKED);
     }
+  };
+
+  const copyToShare = () => {
+    setDisplayClipboardMessage(true);
+    const url = window.location.href;
+    copy(url);
   };
 
   useEffect(() => {
@@ -87,6 +95,7 @@ function FoodDetails(props) {
       <button
         data-testid="share-btn"
         type="button"
+        onClick={ copyToShare }
       >
         <img src={ shareIcon } alt="shareIcon" />
       </button>
@@ -98,6 +107,7 @@ function FoodDetails(props) {
       >
         <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
       </button>
+      { displayClipboardMessage && <span>Link copied!</span> }
       <h3 data-testid="recipe-category">{details.strCategory}</h3>
       {ingredient.map((itr, index) => (
         <p
@@ -121,7 +131,6 @@ function FoodDetails(props) {
         className="start-recipe-btn"
         data-testid="start-recipe-btn"
         type="button"
-        // Tela de receita em progresso de comida: /foods/{id-da-receita}/in-progress;
         onClick={ () => history.push(`/foods/${details.idMeal}/in-progress`) }
       >
         Start Recipe
@@ -137,17 +146,3 @@ FoodDetails.propTypes = {
 }.isRequired;
 
 export default FoodDetails;
-
-// https://www.youtube.com/watch?v=4aZr5hZXP_s
-// https://www.youtube.com/embed/4aZr5hZXP_s
-// A foto deve possuir o atributo data-testid="recipe-photo";
-// O título deve possuir o atributo data-testid="recipe-title";
-// O botão de compartilhar deve possuir o atributo data-testid="share-btn";
-// O botão de favoritar deve possuir o atributo data-testid="favorite-btn";
-// O texto da categoria deve possuir o atributo data-testid="recipe-category";
-// Os ingredientes devem possuir o atributo data-testid="${index}-ingredient-name-and-measure";
-// O texto de instruções deve possuir o atributo data-testid="instructions";
-// O vídeo, presente somente na tela de comidas, deve possuir o atributo data-testid="video";
-// O card de receitas recomendadas deve possuir o atributo data-testid="${index}-recomendation-card";
-// O botão de iniciar receita deve possuir o atributo data-testid="start-recipe-btn";
-// https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
