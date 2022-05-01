@@ -3,36 +3,36 @@ import DoneRecipesCard from '../components/DoneRecipesCard';
 import Header from '../components/Header';
 
 function DoneRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState({});
-  const obj = {
-    name: 'food1',
-    img: 'bla',
-    category: 'beef',
-    date: '10-10-2022',
-    index: 0,
-    tags: ['Pasta', 'Curry'],
+  const [doneRecipes, setDoneRecipes] = useState([]);
+  const [renderRecipes, setRenderRecipes] = useState([]);
+
+  const getFromStorage = () => {
+    const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    setDoneRecipes(storageData);
+    setRenderRecipes(storageData);
   };
-  // { MOCK
-  //   id: '52771',
-  //   type: 'food',
-  //   nationality: 'Italian',
-  //   category: 'Vegetarian',
-  //   alcoholicOrNot: '',
-  //   name: 'Spicy Arrabiata Penne',
-  //   image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  // },
-  // {
-  //   id: '178319',
-  //   type: 'drink',
-  //   nationality: '',
-  //   category: 'Cocktail',
-  //   alcoholicOrNot:  'Alcoholic',
-  //   name: 'Aquamarine',
-  //   image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-  // }
+
+  const toRenderRecipes = ({ target }) => {
+    switch (target.innerText) {
+    case 'All':
+      setRenderRecipes(doneRecipes);
+      console.log('All');
+      break;
+    case 'Food':
+      setRenderRecipes(doneRecipes.filter((element) => element.type === 'food'));
+      console.log('Food');
+      break;
+    case 'Drinks':
+      setRenderRecipes(doneRecipes.filter((element) => element.type === 'drink'));
+      console.log('Drinks');
+      break;
+    default:
+      break;
+    }
+  };
 
   useEffect(() => {
-    setDoneRecipes(obj);
+    getFromStorage();
   }, []);
 
   return (
@@ -42,23 +42,31 @@ function DoneRecipes() {
         <button
           type="button"
           data-testid="filter-by-all-btn"
+          onClick={ toRenderRecipes }
         >
           All
         </button>
         <button
           type="button"
           data-testid="filter-by-food-btn"
+          onClick={ toRenderRecipes }
         >
           Food
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
+          onClick={ toRenderRecipes }
         >
           Drinks
         </button>
       </div>
-      <DoneRecipesCard doneRecipes={ doneRecipes } />
+      { renderRecipes.map((recipe, index) => (
+        <DoneRecipesCard
+          key={ `doneID#${recipe.id}` }
+          doneRecipes={ recipe }
+          index={ index }
+        />)) }
     </div>
   );
 }
