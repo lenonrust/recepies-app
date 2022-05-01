@@ -7,12 +7,22 @@ import RecommendationCard from '../components/RecommendationCard';
 import './FoodDetails.css';
 
 const TWENTY = 20;
+const FAVORITE_CHECKED = 'favorite-checked';
 
 function FoodDetails(props) {
   const history = useHistory();
   const { match: { params: { id } } } = props;
   const [details, setDetails] = useState({});
   const [ingredient, setIngredient] = useState([]);
+  const [favBtn, setFavBtn] = useState('favorito');
+
+  const verifyFavorite = () => {
+    const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localData && localData.some((element) => element.id === id)) {
+      setFavBtn(FAVORITE_CHECKED);
+    }
+  };
+
   useEffect(() => {
     const searchMeals = async () => {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -20,6 +30,7 @@ function FoodDetails(props) {
       setDetails(data.meals[0]);
     };
     searchMeals();
+    verifyFavorite();
   }, []);
 
   const filterIngredients = () => {
@@ -47,12 +58,15 @@ function FoodDetails(props) {
     };
     if (!localData) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
+      setFavBtn(FAVORITE_CHECKED);
     } else if (localData.some((element) => element.id === favoriteObject.id)) {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify(localData.filter((data) => data.id !== favoriteObject.id)));
+      setFavBtn('favorito');
     } else {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify([...localData, favoriteObject]));
+      setFavBtn(FAVORITE_CHECKED);
     }
   };
 
@@ -77,6 +91,7 @@ function FoodDetails(props) {
         <img src={ shareIcon } alt="shareIcon" />
       </button>
       <button
+        className={ favBtn }
         data-testid="favorite-btn"
         type="button"
         onClick={ favoriteRecipe }

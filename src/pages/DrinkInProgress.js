@@ -7,9 +7,9 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 const copy = require('clipboard-copy');
 
-const TWENTY = 20;
+const FIFTEEN = 15;
 
-function FoodInProgress(props) {
+function DrinkInProgress(props) {
   const { match: { params: { id } } } = props;
   const [details, setDetails] = useState({});
   const [ingredient, setIngredient] = useState([]);
@@ -43,21 +43,21 @@ function FoodInProgress(props) {
 
   const getFromStorage = () => {
     const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const ingredients = storageData.meals[id];
+    const ingredients = storageData.cocktails[id];
     if (ingredients) setIngredientList(ingredients);
   };
 
   const fromStateToStorage = () => {
     const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    storageData.meals[id] = ingredientList;
+    storageData.cocktails[id] = ingredientList;
     localStorage.setItem('inProgressRecipes', JSON.stringify(storageData));
   };
 
   useEffect(() => {
     const searchMeals = async () => {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
-      setDetails(data.meals[0]);
+      setDetails(data.drinks[0]);
     };
     searchMeals();
     checkStorage();
@@ -67,7 +67,7 @@ function FoodInProgress(props) {
 
   const filterIngredients = () => {
     const array = [];
-    for (let index = 1; index <= TWENTY; index += 1) {
+    for (let index = 1; index <= FIFTEEN; index += 1) {
       if (details[`strIngredient${index}`] !== ''
         && details[`strIngredient${index}`] !== null) {
         array
@@ -103,13 +103,12 @@ function FoodInProgress(props) {
   // const favoriteRecipe = () => {
   //   const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
   //   const favoriteObject = {
-  //     id: details.idMeal,
-  //     type: 'food',
-  //     nationality: details.strArea,
+  //     id: details.idDrink,
+  //     type: 'drink',
   //     category: details.strCategory,
   //     alcoholicOrNot: details.strAlcoholic,
-  //     name: details.strMeal,
-  //     image: details.strMealThumb,
+  //     name: details.strDrink,
+  //     image: details.strDrinkThumb,
   //   };
   //   if (!localData) {
   //     localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
@@ -131,10 +130,10 @@ function FoodInProgress(props) {
         width="150px"
         height="150px"
         data-testid="recipe-photo"
-        src={ details.strMealThumb }
-        alt={ details.strMeal }
+        src={ details.strDrinkThumb }
+        alt={ details.strDrink }
       />
-      <h2 data-testid="recipe-title">{details.strMeal}</h2>
+      <h2 data-testid="recipe-title">{details.strDrink}</h2>
       <button
         data-testid="share-btn"
         type="button"
@@ -152,7 +151,7 @@ function FoodInProgress(props) {
           : <img src={ whiteHeartIcon } alt="whiteHeartIcon" /> } */}
       </button>
       { displayClipboardMessage && <span>Link copied!</span> }
-      <h3 data-testid="recipe-category">{details.strCategory}</h3>
+      <h3 data-testid="recipe-category">{details.strAlcoholic}</h3>
       {loadingValidation && ingredient.map((itr, index) => (
         <div key={ `ingredient${index}` }>
           <label
@@ -187,7 +186,7 @@ function FoodInProgress(props) {
   );
 }
 
-FoodInProgress.propTypes = {
+DrinkInProgress.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -195,4 +194,4 @@ FoodInProgress.propTypes = {
   }),
 }.isRequired;
 
-export default FoodInProgress;
+export default DrinkInProgress;
