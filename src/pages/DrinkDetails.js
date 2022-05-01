@@ -27,9 +27,11 @@ function DrinkDetails(props) {
 
   const verifyProgress = () => {
     const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const drinkData = storageData.cocktails;
-    if (drinkData[id]) {
-      setButtonName('Continue Recipe');
+    if (storageData && storageData.cocktails) {
+      const drinkData = storageData.cocktails;
+      if (drinkData[id]) {
+        setButtonName('Continue Recipe');
+      }
     }
   };
 

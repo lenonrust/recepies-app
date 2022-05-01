@@ -42,10 +42,11 @@ function FoodDetails(props) {
 
   const verifyProgress = () => {
     const storageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    const foodData = storageData.meals;
-    console.log(storageData, foodData);
-    if (foodData[id]) {
-      setButtonName('Continue Recipe');
+    if (storageData && storageData.meals) {
+      const foodData = storageData.meals;
+      if (foodData[id]) {
+        setButtonName('Continue Recipe');
+      }
     }
   };
 
