@@ -17,6 +17,7 @@ function FoodDetails(props) {
   const [ingredient, setIngredient] = useState([]);
   const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [favBtn, setFavBtn] = useState('favorito');
+  const [hideButton, setHideButtonButton] = useState(false);
 
   const verifyFavorite = () => {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -31,6 +32,13 @@ function FoodDetails(props) {
     copy(url);
   };
 
+  const validateButton = () => {
+    const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (storageData) {
+      return (storageData && storageData.some((recipe) => recipe.id === id));
+    } return false;
+  };
+
   useEffect(() => {
     const searchMeals = async () => {
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -39,6 +47,7 @@ function FoodDetails(props) {
     };
     searchMeals();
     verifyFavorite();
+    setHideButtonButton(!validateButton());
   }, []);
 
   const filterIngredients = () => {
@@ -127,14 +136,16 @@ function FoodDetails(props) {
         frameBorder="0"
       />
       <RecommendationCard title="Meals" />
-      <button
-        className="start-recipe-btn"
-        data-testid="start-recipe-btn"
-        type="button"
-        onClick={ () => history.push(`/foods/${details.idMeal}/in-progress`) }
-      >
-        Start Recipe
-      </button>
+      {hideButton && (
+        <button
+          className="start-recipe-btn"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => history.push(`/foods/${details.idMeal}/in-progress`) }
+        >
+          Start Recipe
+        </button>) }
+
     </div>
   );
 }
