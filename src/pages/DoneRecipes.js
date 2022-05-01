@@ -61,7 +61,7 @@ function DoneRecipes() {
           Drinks
         </button>
       </div>
-      { renderRecipes.map((recipe, index) => (
+      { renderRecipes && renderRecipes.map((recipe, index) => (
         <DoneRecipesCard
           key={ `doneID#${recipe.id}` }
           doneRecipes={ recipe }
