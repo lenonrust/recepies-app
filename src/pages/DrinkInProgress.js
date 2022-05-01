@@ -23,7 +23,6 @@ function DrinkInProgress(props) {
     setDisplayClipboardMessage(true);
     const url = window.location.href;
     copy(url.replace('/in-progress', ''));
-    console.log(details, new Date());
   };
 
   // const verifyFavorite = () => {
@@ -103,7 +102,8 @@ function DrinkInProgress(props) {
 
   const finishRecipe = () => {
     const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
-    const recipeTags = !details.strTags && ''; // para casos em que o campo strTags retorna Null da API
+    const recipeTags = (!details.strTags && details.strTags === null)
+      ? '' : details.strTags.split(','); // para casos em que o campo strTags retorna Null da API
     const myRecipe = {
       id,
       type: 'drink',
@@ -113,7 +113,7 @@ function DrinkInProgress(props) {
       name: details.strDrink,
       image: details.strDrinkThumb,
       doneDate: new Date(),
-      tags: recipeTags.split(','),
+      tags: recipeTags,
     };
     if (storageData) {
       localStorage.setItem('doneRecipes', JSON.stringify([...storageData, myRecipe]));
