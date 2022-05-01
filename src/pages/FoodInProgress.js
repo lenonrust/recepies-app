@@ -102,7 +102,8 @@ function FoodInProgress(props) {
 
   const finishRecipe = () => {
     const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
-    const recipeTags = !details.strTags && ''; // para tratar casos em que o campo strTags retorna Null da API
+    const recipeTags = (!details.strTags && details.strTags === null)
+      ? '' : details.strTags.split(','); // para tratar casos em que o campo strTags retorna Null da API
     const myRecipe = {
       id,
       type: 'food',
@@ -112,7 +113,7 @@ function FoodInProgress(props) {
       name: details.strMeal,
       image: details.strMealThumb,
       doneDate: new Date(),
-      tags: recipeTags.split(','),
+      tags: recipeTags,
     };
     if (storageData) {
       localStorage.setItem('doneRecipes', JSON.stringify([...storageData, myRecipe]));
