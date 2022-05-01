@@ -15,6 +15,14 @@ function DrinkDetails(props) {
   const [details, setDetails] = useState({});
   const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
   const [ingredient, setIngredient] = useState([]);
+  const [hideButton, setHideButtonButton] = useState(false);
+
+  const validateButton = () => {
+    const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (storageData) {
+      return (storageData && storageData.some((recipe) => recipe.id === id));
+    } return false;
+  };
 
   useEffect(() => {
     const searchDrinks = async () => {
@@ -23,6 +31,7 @@ function DrinkDetails(props) {
       setDetails(data.drinks[0]);
     };
     searchDrinks();
+    setHideButtonButton(!validateButton());
   }, []);
 
   const copyToShare = () => {
@@ -105,14 +114,15 @@ function DrinkDetails(props) {
       ))}
       <p data-testid="instructions">{details.strInstructions}</p>
       <RecommendationCard title="Drinks" />
-      <button
-        className="start-recipe-btn"
-        data-testid="start-recipe-btn"
-        type="button"
-        onClick={ () => history.push(`/drinks/${details.idDrink}/in-progress`) }
-      >
-        Start Recipe
-      </button>
+      { hideButton && (
+        <button
+          className="start-recipe-btn"
+          data-testid="start-recipe-btn"
+          type="button"
+          onClick={ () => history.push(`/drinks/${details.idDrink}/in-progress`) }
+        >
+          Start Recipe
+        </button>)}
     </div>
   );
 }
