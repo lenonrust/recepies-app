@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BtnFavorite from '../components/BtnFavorite';
 import RecommendationCard from '../components/RecommendationCard';
-/* import favoriteRecipes from '../helpers/handlerLocalStorage'; */
 import './FoodDetails.css';
 
 const TWENTY = 20;
-const FAVORITE_CHECKED = 'favorite-checked';
 const copy = require('clipboard-copy');
 
 function FoodDetails(props) {
@@ -17,14 +15,14 @@ function FoodDetails(props) {
   const [details, setDetails] = useState({});
   const [ingredient, setIngredient] = useState([]);
   const [displayClipboardMessage, setDisplayClipboardMessage] = useState(false);
-  const [favBtn, setFavBtn] = useState('favorito');
+  const [favBtn, setFavBtn] = useState(false);
   const [hideButton, setHideButtonButton] = useState(false);
   const [buttonName, setButtonName] = useState('Start Recipe');
 
   const verifyFavorite = () => {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (localData && localData.some((element) => element.id === id)) {
-      setFavBtn(FAVORITE_CHECKED);
+      setFavBtn(true);
     }
   };
 
@@ -75,6 +73,10 @@ function FoodDetails(props) {
     return array;
   };
 
+  useEffect(() => {
+    setIngredient(filterIngredients());
+  }, [details]);
+
   const favoriteRecipe = () => {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const favoriteObject = {
@@ -82,28 +84,23 @@ function FoodDetails(props) {
       type: 'food',
       nationality: details.strArea,
       category: details.strCategory,
-      alcoholicOrNot: details.strAlcoholic,
+      alcoholicOrNot: '',
       name: details.strMeal,
       image: details.strMealThumb,
     };
     if (!localData) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
-      setFavBtn(FAVORITE_CHECKED);
+      setFavBtn(true);
     } else if (localData.some((element) => element.id === favoriteObject.id)) {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify(localData.filter((data) => data.id !== favoriteObject.id)));
-      setFavBtn('favorito');
+      setFavBtn(false);
     } else {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify([...localData, favoriteObject]));
-      setFavBtn(FAVORITE_CHECKED);
+      setFavBtn(true);
     }
   };
-
-  useEffect(() => {
-    setIngredient(filterIngredients());
-  }, [details]);
-
   return (
     <div>
       <img
@@ -121,14 +118,10 @@ function FoodDetails(props) {
       >
         <img src={ shareIcon } alt="shareIcon" />
       </button>
-      <button
-        className={ favBtn }
-        data-testid="favorite-btn"
-        type="button"
-        onClick={ favoriteRecipe }
-      >
-        <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
-      </button>
+      <BtnFavorite
+        handleFavorite={ favoriteRecipe }
+        favBtn={ favBtn }
+      />
       {displayClipboardMessage && <span>Link copied!</span>}
       <h3 data-testid="recipe-category">{details.strCategory}</h3>
       {ingredient.map((itr, index) => (

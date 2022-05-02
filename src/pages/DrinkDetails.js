@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import BtnFavorite from '../components/BtnFavorite';
 import RecommendationCard from '../components/RecommendationCard';
 import './DrinkDetails.css';
 
@@ -17,6 +17,14 @@ function DrinkDetails(props) {
   const [ingredient, setIngredient] = useState([]);
   const [hideButton, setHideButtonButton] = useState(false);
   const [buttonName, setButtonName] = useState('Start Recipe');
+  const [favBtn, setFavBtn] = useState(false);
+
+  const verifyFavorite = () => {
+    const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (localData && localData.some((element) => element.id === id)) {
+      setFavBtn(true);
+    }
+  };
 
   const validateButton = () => {
     const storageData = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -44,6 +52,7 @@ function DrinkDetails(props) {
     searchDrinks();
     setHideButtonButton(!validateButton());
     verifyProgress();
+    verifyFavorite();
   }, []);
 
   const copyToShare = () => {
@@ -79,14 +88,18 @@ function DrinkDetails(props) {
       name: details.strDrink,
       image: details.strDrinkThumb,
     };
+
     if (!localData) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteObject]));
+      setFavBtn(true);
     } else if (localData.some((element) => element.id === favoriteObject.id)) {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify(localData.filter((data) => data.id !== favoriteObject.id)));
+      setFavBtn(false);
     } else {
       localStorage.setItem('favoriteRecipes', JSON
         .stringify([...localData, favoriteObject]));
+      setFavBtn(true);
     }
   };
 
@@ -107,13 +120,10 @@ function DrinkDetails(props) {
       >
         <img src={ shareIcon } alt="shareIcon" />
       </button>
-      <button
-        data-testid="favorite-btn"
-        type="button"
-        onClick={ favoriteRecipe }
-      >
-        <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
-      </button>
+      <BtnFavorite
+        handleFavorite={ favoriteRecipe }
+        favBtn={ favBtn }
+      />
       { displayClipboardMessage && <span>Link copied!</span> }
       <h3 data-testid="recipe-category">{details.strAlcoholic}</h3>
       {ingredient.map((itr, index) => (
