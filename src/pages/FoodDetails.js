@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendationCard from '../components/RecommendationCard';
+/* import favoriteRecipes from '../helpers/handlerLocalStorage'; */
 import './FoodDetails.css';
 
 const TWENTY = 20;
