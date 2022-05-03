@@ -93,6 +93,7 @@ function DrinkInProgress(props) {
     const favoriteObject = {
       id: details.idDrink,
       type: 'drink',
+      nationality: '',
       category: details.strCategory,
       alcoholicOrNot: details.strAlcoholic,
       name: details.strDrink,
