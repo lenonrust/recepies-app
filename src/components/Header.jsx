@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import InputSearchHeader from './InputSearchHeader';
+import searchContext from '../context/searchContext';
 
 function Header({ title }) {
-  const [isVisible, setIsVisible] = useState(false);
+  const { isVisible, setIsVisible } = useContext(searchContext);
 
   const history = useHistory();
 

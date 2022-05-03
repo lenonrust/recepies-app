@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1>TRYBE RECEPES</h1>
+      <h1>TRYBE RECIPES</h1>
       <form>
         <label htmlFor="email-input">
           E-mail:

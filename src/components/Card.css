@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.card-item {
+  height: 200px;
+  width: 150px;
+}
+
+.card-item img {
+  height: 150px;
+  width: 150px;
+}
