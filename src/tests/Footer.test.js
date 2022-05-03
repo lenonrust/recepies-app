@@ -6,7 +6,7 @@ import { Router } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 describe('19 - Implemente os elementos do menu inferior'
-+ 'respeitando os atributos descritos no protótipo', () => {
++ ' respeitando os atributos descritos no protótipo', () => {
   it('19.1 - Tem os data-testids solicitados', () => {
     // cy.visit('http://localhost:3000/foods');
     render(<Footer />);
