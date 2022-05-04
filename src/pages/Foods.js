@@ -21,6 +21,7 @@ function Foods() {
     } else { url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='; }
 
     const response = await fetch(url);
+    console.log('url: ', url, 'response: ', response);
     const data = await response.json();
     setFoods(data.meals);
     setToggleFilter('');
@@ -66,7 +67,7 @@ function Foods() {
       >
         All
       </button>
-      { foodCategory.slice(0, FIVE).map((cat) => (
+      {foodCategory.slice(0, FIVE).map((cat) => (
         <button
           data-testid={ `${cat.strCategory}-category-filter` }
           type="button"
@@ -76,17 +77,17 @@ function Foods() {
           {cat.strCategory}
 
         </button>
-      )) }
-      { foods.length >= 1 && (
+      ))}
+      {foods.length >= 1 && (
         <div>
-          { foods.slice(0, TWELVE).map((iter, index) => (
+          {foods.slice(0, TWELVE).map((iter, index) => (
             <button
               type="button"
               key={ `foods${iter.idMeal}` }
               onClick={ () => history.push(`/foods/${iter.idMeal}`) }
             >
               <Card index={ index } name={ iter.strMeal } img={ iter.strMealThumb } />
-            </button>)) }
+            </button>))}
         </div>
       )}
       <Footer />
