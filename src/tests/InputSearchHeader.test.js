@@ -1,11 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
+// import { createMemoryHistory } from 'history';
+// import { Router } from 'react-router-dom';
+import handleFoodSearch from '../helpers/getMealsAPI';
 import SearchProvider from '../context/SearchProvider';
 import InputSearchHeader from '../components/InputSearchHeader';
-import Foods from '../pages/Foods';
+// import Foods from '../pages/Foods';
 
 const fetchMock = require('../../cypress/mocks/fetch');
 
@@ -139,25 +140,58 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
   });
 
-  // it('13.7 - Verifica se ao realizar busca que não encontra '
-  // + 'receita, um alerta é emitido informando a mensagem correspondente', async () => {
+  // it('13.7 Verifica se função setFoods é chamada', () => {
+  //   const { setFoods } = useContext;
   //   render(
   //     <SearchProvider>
   //       <InputSearchHeader title="Foods" />
   //     </SearchProvider>,
   //   );
+  //   // const setFoods = jest.fn(x);
 
-  //   const noRecipeMSG = 'Sorry, we haven\'t found any recipes for these filters.';
   //   const searchInput = screen.getByTestId(SEARCH_INPUT);
-  //   const nameRadio = screen.getByTestId(NAME_RADIO);
-  //   const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
+  //   const ingredientRadio = screen.getByTestId(INGREDIENT_RADIO);
+  //   expect(searchInput).toBeInTheDocument();
 
-  //   userEvent.type(searchInput, 'xablau');
-  //   userEvent.click(nameRadio);
+  //   const searchBtn = screen.getByTestId(SEARCH_BUTTON);
+  //   expect(searchBtn).toBeInTheDocument();
+
+  //   userEvent.type(searchInput, 'beef');
+  //   userEvent.click(ingredientRadio);
   //   userEvent.click(searchBtn);
 
-  //   expect(fetch).toBeCalled();
-
-  //   await expect(alert).toBeCalledWith(noRecipeMSG);
+  //   expect(setFoods).toBeCalled();
   // });
+
+  it.only('13.7 - Verifica se ao realizar busca que não encontra '
+  + 'receita, um alerta é emitido informando a mensagem correspondente', async () => {
+    // global.fetch = jest.fn(() => Promise.resolve({
+    //   json: () => Promise.resolve({ meals: null }),
+    // }));
+    jest.mock('../helpers/getMealsAPI');
+
+    global.fetch = jest.fn(() => ({ meals: null }));
+
+    render(
+      <SearchProvider>
+        <InputSearchHeader title="Foods" />
+      </SearchProvider>,
+    );
+
+    // jest.spyOn(window, 'alert').mockImplementation(() => {});
+
+    const noRecipeMSG = 'Sorry, we haven\'t found any recipes for these filters.';
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const nameRadio = screen.getByTestId(NAME_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
+
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(nameRadio);
+    userEvent.click(searchBtn);
+
+    expect(handleFoodSearch).toHaveBeenCalled();
+    expect(fetch).toBeCalled();
+    expect(alert).toBeCalled();
+    expect(alert).toBeCalledWith(noRecipeMSG);
+  });
 });
