@@ -1,19 +1,22 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import InputSearchHeader from '../components/InputSearchHeader';
-// import userEvent from '@testing-library/user-event';
-// import { createMemoryHistory } from 'history';
-// import { Router } from 'react-router-dom';
-// import userEvent from '@testing-library/user-event';
-// import Header from '../components/Header';
 import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 import SearchProvider from '../context/SearchProvider';
 import InputSearchHeader from '../components/InputSearchHeader';
+import Foods from '../pages/Foods';
 
 const fetchMock = require('../../cypress/mocks/fetch');
 
 jest.spyOn(window, 'alert').mockImplementation(() => {});
 global.fetch = jest.fn(fetchMock);
+
+const SEARCH_INPUT = 'search-input';
+const INGREDIENT_RADIO = 'ingredient-search-radio';
+const NAME_RADIO = 'name-search-radio';
+const FIRST_LETTER_RADIO = 'first-letter-search-radio';
+const SEARCH_BUTTON = 'exec-search-btn';
 // const soupMeals = require('../../cypress/mocks/soupMeals');
 // const ginDrinks = require('../../cypress/mocks/ginDrinks');
 
@@ -21,34 +24,17 @@ describe('13 - Implemente os elementos da barra de busca'
   + ' respeitando os atributos descritos no protótipo', () => {
   it('13.1 - Tem os data-testids tanto da barra'
       + ' de busca quanto de todos os radio-buttons', () => {
-    // cy.visit('http://localhost:3000/foods');
-    // const history = createMemoryHistory();
-    // render(
-    //   <Router history={ history }>
-    //     <SearchProvider>
-    //       <Header title="Foods" />
-    //     </SearchProvider>
-
-    //   </Router>,
-    // );
-
-    // const openSearchBtn = screen.getByTestId('search-top-btn');
-
-    // expect(openSearchBtn).toBeInTheDocument();
-
-    // userEvent.click(openSearchBtn);
-
     render(
       <SearchProvider>
         <InputSearchHeader title="Foods" />
       </SearchProvider>,
     );
 
-    const searchInput = screen.getByTestId('search-input');
-    const ingredientRadio = screen.getByTestId('ingredient-search-radio');
-    const nameRadio = screen.getByTestId('name-search-radio');
-    const firstLetterRadio = screen.getByTestId('first-letter-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const ingredientRadio = screen.getByTestId(INGREDIENT_RADIO);
+    const nameRadio = screen.getByTestId(NAME_RADIO);
+    const firstLetterRadio = screen.getByTestId(FIRST_LETTER_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
 
     expect(searchInput).toBeInTheDocument();
     expect(ingredientRadio).toBeInTheDocument();
@@ -63,9 +49,9 @@ describe('13 - Implemente os elementos da barra de busca'
       </SearchProvider>,
     );
 
-    const searchInput = screen.getByTestId('search-input');
-    const ingredientRadio = screen.getByTestId('ingredient-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const ingredientRadio = screen.getByTestId(INGREDIENT_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
 
     userEvent.type(searchInput, 'chicken');
     userEvent.click(ingredientRadio);
@@ -81,9 +67,9 @@ describe('13 - Implemente os elementos da barra de busca'
       </SearchProvider>,
     );
 
-    const searchInput = screen.getByTestId('search-input');
-    const nameRadio = screen.getByTestId('name-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const nameRadio = screen.getByTestId(NAME_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
 
     userEvent.type(searchInput, 'soup');
     userEvent.click(nameRadio);
@@ -99,9 +85,9 @@ describe('13 - Implemente os elementos da barra de busca'
       </SearchProvider>,
     );
 
-    const searchInput = screen.getByTestId('search-input');
-    const firstLetterRadio = screen.getByTestId('first-letter-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const firstLetterRadio = screen.getByTestId(FIRST_LETTER_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
 
     userEvent.type(searchInput, 'a');
     userEvent.click(firstLetterRadio);
@@ -119,9 +105,9 @@ describe('13 - Implemente os elementos da barra de busca'
     );
 
     const oneCharacterErrorMSG = 'Your search must have only 1 (one) character';
-    const searchInput = screen.getByTestId('search-input');
-    const firstLetterRadio = screen.getByTestId('first-letter-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchInput = screen.getByTestId(SEARCH_INPUT);
+    const firstLetterRadio = screen.getByTestId(FIRST_LETTER_RADIO);
+    const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
 
     userEvent.type(searchInput, 'aaa');
     userEvent.click(firstLetterRadio);
@@ -130,23 +116,48 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(alert).toBeCalledWith(oneCharacterErrorMSG);
   });
 
-  it('13.6 - Verifica se ao realizar busca que não encontra '
-  + 'receita, um alerta é emitido informando a mensagem correspondente', () => {
+  it('13.6 - Verifica se ao encontrar apenas uma receita a '
+  + 'página é redirecionada para a página de detalhes', async () => {
     render(
+
       <SearchProvider>
         <InputSearchHeader title="Foods" />
       </SearchProvider>,
     );
+    const searchInput = await screen.findByTestId(SEARCH_INPUT);
+    const nameRadio = await screen.findByTestId(NAME_RADIO);
+    expect(searchInput).toBeInTheDocument();
 
-    const noRecipeMSG = 'Sorry, we haven\'t found any recipes for these filters.';
-    const searchInput = screen.getByTestId('search-input');
-    const nameRadio = screen.getByTestId('name-search-radio');
-    const searchBtn = screen.queryByTestId('exec-search-btn');
+    const searchBtn = await screen.findByTestId(SEARCH_BUTTON);
+    expect(searchBtn).toBeInTheDocument();
+    expect(nameRadio).toBeInTheDocument();
 
-    userEvent.type(searchInput, 'xablau');
+    userEvent.type(searchInput, 'Arrabiata');
     userEvent.click(nameRadio);
     userEvent.click(searchBtn);
 
-    expect(alert).toBeCalledWith(noRecipeMSG);
+    expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
   });
+
+  // it('13.7 - Verifica se ao realizar busca que não encontra '
+  // + 'receita, um alerta é emitido informando a mensagem correspondente', async () => {
+  //   render(
+  //     <SearchProvider>
+  //       <InputSearchHeader title="Foods" />
+  //     </SearchProvider>,
+  //   );
+
+  //   const noRecipeMSG = 'Sorry, we haven\'t found any recipes for these filters.';
+  //   const searchInput = screen.getByTestId(SEARCH_INPUT);
+  //   const nameRadio = screen.getByTestId(NAME_RADIO);
+  //   const searchBtn = screen.queryByTestId(SEARCH_BUTTON);
+
+  //   userEvent.type(searchInput, 'xablau');
+  //   userEvent.click(nameRadio);
+  //   userEvent.click(searchBtn);
+
+  //   expect(fetch).toBeCalled();
+
+  //   await expect(alert).toBeCalledWith(noRecipeMSG);
+  // });
 });
