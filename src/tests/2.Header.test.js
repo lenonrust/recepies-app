@@ -9,13 +9,13 @@ import DoneRecipes from '../pages/DoneRecipes';
 const profileTopBtn = 'profile-top-btn';
 const pageTitle = 'page-title';
 const searchTopBtn = 'search-top-btn';
-describe('9. Testing "Header" component', () => {
+describe('2 - Testing "Header" component', () => {
   // a configuração abaixo(Linhas 12 e 13) corrige problema de funcionalidade do jest ("Not implemented: window.computedStyle(elt, pseudoElt")
   // quando passado parametro title em "render(<Header title = 'Foods'/>)"
   // linhas 15, 28 e 38
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('9.1 Testing if "Header" work as expected when receives title Foods', () => {
+  it('2.1 - Testing if "Header" work as expected when receives title Foods', () => {
     render(<Header title="Foods" />);
     const headerProfileBtn = screen.queryByTestId(profileTopBtn);
     const headerTitle = screen.queryByTestId(pageTitle);
@@ -25,7 +25,7 @@ describe('9. Testing "Header" component', () => {
     expect(headerTitle).toHaveTextContent('Foods');
     expect(headerSearchBtn).toBeDefined();
   });
-  it('Testing if "Header" work as expected when receives title Drinks', () => {
+  it('2.2 - Testing if "Header" work as expected when receives title Drinks', () => {
     render(<Header title="Drinks" />);
     const headerProfileBtn = screen.queryByTestId(profileTopBtn);
     const headerTitle = screen.queryByTestId(pageTitle);
@@ -35,18 +35,19 @@ describe('9. Testing "Header" component', () => {
     expect(headerTitle).toBeDefined();
     expect(headerSearchBtn).toBeDefined();
   });
-  it('Testing if "Header" work as expected when receives title Explore Nationalities ',
-    () => {
-      render(<Header title="Explore Nationalities" />);
-      const headerProfileBtn = screen.queryByTestId(profileTopBtn);
-      const headerTitle = screen.queryByTestId(pageTitle);
-      const headerSearchBtn = screen.queryByTestId(searchTopBtn);
+  it('2.3 - Testing if "Header" work as'
+  + ' expected when receives title Explore Nationalities ',
+  () => {
+    render(<Header title="Explore Nationalities" />);
+    const headerProfileBtn = screen.queryByTestId(profileTopBtn);
+    const headerTitle = screen.queryByTestId(pageTitle);
+    const headerSearchBtn = screen.queryByTestId(searchTopBtn);
 
-      expect(headerProfileBtn).toBeDefined();
-      expect(headerTitle).toHaveTextContent('Explore Nationalities');
-      expect(headerSearchBtn).toBeDefined();
-    });
-  it('Testing if "Header" work as expected when receives a diffrent title ',
+    expect(headerProfileBtn).toBeDefined();
+    expect(headerTitle).toHaveTextContent('Explore Nationalities');
+    expect(headerSearchBtn).toBeDefined();
+  });
+  it('2.4 - Testing if "Header" work as expected when receives a diffrent title ',
     () => {
       render(<DoneRecipes title="Done Recipes" />);
 
@@ -58,7 +59,7 @@ describe('9. Testing "Header" component', () => {
       expect(headerTitle).toHaveTextContent('Done Recipes');
       expect(headerSearchBtn).not.toBeInTheDocument();
     });
-  it('Testing if Profile button works as expected', () => {
+  it('2.5 - Testing if Profile button works as expected', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -71,7 +72,7 @@ describe('9. Testing "Header" component', () => {
     userEvent.click(headerProfileBtn);
     expect(history.location.pathname).toBe('/profile');
   });
-  it('Testing if Search button works as expected', () => {
+  it('2.6 - Testing if Search button works as expected', () => {
     render(<Header title="Foods" />);
     const headerSearchBtn = screen.queryByTestId(searchTopBtn);
     userEvent.click(headerSearchBtn);
