@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import BtnFavorite from '../components/BtnFavorite';
 import RecommendationCard from '../components/RecommendationCard';
-import './DrinkDetails.css';
+import './FoodAndDrinkDetails.css';
 
 const FIFTEEN = 15;
 const copy = require('clipboard-copy');
@@ -104,37 +104,57 @@ function DrinkDetails(props) {
   };
 
   return (
-    <div>
+    <div className="main-details-container">
       <img
-        width="150px"
-        height="150px"
+        className="img-header-details"
         data-testid="recipe-photo"
         src={ details.strDrinkThumb }
         alt={ details.strDrink }
       />
-      <h2 data-testid="recipe-title">{ details.strDrink }</h2>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ copyToShare }
-      >
-        <img src={ shareIcon } alt="shareIcon" />
-      </button>
-      <BtnFavorite
-        handleFavorite={ favoriteRecipe }
-        favBtn={ favBtn }
-      />
-      { displayClipboardMessage && <span>Link copied!</span> }
-      <h3 data-testid="recipe-category">{details.strAlcoholic}</h3>
-      {ingredient.map((itr, index) => (
-        <p
-          key={ `ingredient${index}` }
-          data-testid={ `${index}-ingredient-name-and-measure` }
+      <div className="header-instructions">
+        <h2 className="title-details" data-testid="recipe-title">{ details.strDrink }</h2>
+        <div className="header-instructions-buttons">
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ copyToShare }
+          >
+            <img src={ shareIcon } alt="shareIcon" />
+          </button>
+          <BtnFavorite
+            handleFavorite={ favoriteRecipe }
+            favBtn={ favBtn }
+          />
+        </div>
+      </div>
+      <div className="display-clipp">
+        <h3
+          className="category-title"
+          data-testid="recipe-category"
         >
-          {itr}
-        </p>
-      ))}
-      <p data-testid="instructions">{details.strInstructions}</p>
+          {details.strAlcoholic}
+        </h3>
+        { displayClipboardMessage && <span className="share-span">Link copied!</span> }
+      </div>
+      <h4 className="ingredients-title">INGREDIENTS</h4>
+      <ul className="ingredients-list">
+        {ingredient.map((itr, index) => (
+          <li
+            key={ `ingredient${index}` }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {itr}
+          </li>
+        ))}
+      </ul>
+      <h4 className="instructions-title">INSTRUCTIONS</h4>
+      <p
+        className="instructions-details"
+        data-testid="instructions"
+      >
+        {details.strInstructions}
+      </p>
+      <h4 className="recommendations-title">SUGGESTIONS</h4>
       <RecommendationCard title="Drinks" />
       { hideButton && (
         <button

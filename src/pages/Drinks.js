@@ -38,47 +38,53 @@ function Drinks() {
     categoryDrink();
   }, []);
 
-  const filterByCategory = async (target) => {
-    const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${target.innerHTML}`;
+  const filterByCategory = async (id) => {
+    const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${id}`;
     const response = await fetch(url);
     const data = await response.json();
     setDrinks(data.drinks);
   };
 
-  const setFilter = ({ target }) => {
-    setToggleFilter(target.innerHTML);
-    if (toggleFilter === target.innerHTML) {
+  const setFilter = (id) => {
+    setToggleFilter(id);
+    if (toggleFilter === id) {
       initialDrink();
     } else {
-      filterByCategory(target);
+      filterByCategory(id);
     }
   };
 
   return (
-    <div>
+    <div className="main-container">
       <Header title="Drinks" />
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ initialDrink }
-      >
-        All
-      </button>
-      { drinkCategory.slice(0, FIVE).map((cat) => (
+      <div className="category-section">
         <button
-          data-testid={ `${cat.strCategory}-category-filter` }
+          className="button-category btn-all-drink"
           type="button"
-          key={ `DrinkCategory${cat.strCategory}` }
-          onClick={ setFilter }
+          data-testid="All-category-filter"
+          onClick={ initialDrink }
         >
-          {cat.strCategory}
-
+          All
         </button>
-      )) }
+        { drinkCategory.slice(0, FIVE).map((cat) => (
+          <button
+            className={ `button-${cat.strCategory === 'Other/Unknown'
+              ? 'Other' : cat.strCategory} button-category` }
+            data-testid={ `${cat.strCategory}-category-filter` }
+            type="button"
+            key={ `DrinkCategory${cat.strCategory}` }
+            onClick={ () => setFilter(cat.strCategory) }
+          >
+            { cat.strCategory === 'Other/Unknown' ? 'Other' : cat.strCategory }
+
+          </button>
+        )) }
+      </div>
       { drinks.length > 1 && (
-        <div>
+        <div className="card-section">
           { drinks.slice(0, TWELVE).map((iter, index) => (
             <button
+              className="button-card"
               type="button"
               key={ `drinks${iter.idDrink}` }
               onClick={ () => history.push(`/drinks/${iter.idDrink}`) }

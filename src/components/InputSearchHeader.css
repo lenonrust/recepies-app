@@ -1,0 +1,119 @@
+:root {
+
+  --main-color: #4a9c5e;
+
+  --text-color: rgb(97, 97, 97);
+
+  --secondary-color: white;
+}
+
+.search-container {
+  width: 100%;
+}
+
+.input-label-search {
+  margin: 0;
+  width: 230px;
+}
+
+.exec-search-container {
+  height: 35px;
+  padding: 3px 0;
+}
+
+.input-search {
+  background-color: rgb(226, 226, 219);
+  border: 1px solid #ccb;
+  border-radius: 5px;
+  color: rgb(99, 97, 97);
+  font-size: 14px;
+  margin: 0 5px 0 10px;
+  margin-top: 5px;
+  outline: none;
+  padding: 2px;
+  width: 280px;
+}
+
+.input-search:hover {
+  background-color: rgb(226, 226, 219);
+}
+
+.input-search:focus {
+  background-color: rgb(226, 226, 219);
+}
+
+.search-options {
+  display: flex;
+  justify-content: space-evenly;
+  text-shadow: 0 0 1px black;
+}
+
+.search-options label {
+  margin: 2px;
+}
+
+.search-options input {
+  margin-right: 3px;
+  position: relative;
+  top: 1px;
+}
+
+
+.input-search:-webkit-autofill {
+  -webkit-text-fill-color: rgb(99, 97, 97);
+}
+
+.input-search:-webkit-autofill, input:-webkit-autofill:hover {
+  transition: background-color 500000000s ease-in-out 0s;
+}
+
+.input-search:-webkit-autofill:focus, input:-webkit-autofill:active {
+  transition: background-color 500000000s ease-in-out 0s;
+}
+
+
+.search-button {
+  background-color: #298e46;
+  border: 0.5px solid #ccb;
+  border-radius: 5px;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  padding: 3px 5px;
+  position: relative;
+  text-shadow: 0 0 1px black;
+  top: -1px;
+}
+
+.search-button:hover {
+  background-color: #2c974b;
+}
+
+/* .exec-search-container button {
+  border-radius: 5px;
+  margin-left: 15px;
+  width: 23%;
+} */
+
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}

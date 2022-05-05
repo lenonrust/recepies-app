@@ -1,16 +1,17 @@
-* {
-  background: #4a9c5e;
-}
-
-.login-section {
+:root {
 
   --main-color: #4a9c5e;
 
   --text-color: rgb(97, 97, 97);
 
   --secondary-color: white;
+}
+
+.login-section {
+  background-color: var(--main-color);
   display: flex;
   height: 100vh;
+
 }
 
 .login-container {
@@ -23,7 +24,7 @@
   flex-direction: column;
   height: 435px;
   justify-content: center;
-  width: 85%;
+  width: 320px;
 }
 
 .logo-login {
@@ -91,15 +92,15 @@
 }
 
 
-input:-webkit-autofill {
+.input-login:-webkit-autofill {
   -webkit-text-fill-color: var(--text-color);
 }
 
-input:-webkit-autofill, input:-webkit-autofill:hover {
+.input-login:-webkit-autofill, input:-webkit-autofill:hover {
   transition: background-color 500000000s ease-in-out 0s;
 }
 
-input:-webkit-autofill:focus, input:-webkit-autofill:active {
+.input-login:-webkit-autofill:focus, input:-webkit-autofill:active {
   transition: background-color 500000000s ease-in-out 0s;
 }
 
@@ -123,7 +124,7 @@ input:-webkit-autofill:focus, input:-webkit-autofill:active {
 }
 
 .bnt-login:focus {
-  box-shadow: inset 0 0 3px #179766;
+  box-shadow: inset 0 0 3px #408952;
 }
 
 .bnt-login:hover {

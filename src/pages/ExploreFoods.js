@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import './ExploreFoodsAndDrinks.css';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -19,30 +20,35 @@ function ExploreFoods() {
   }, []);
 
   return (
-    <div>
+    <div className="main-container">
       <Header title="Explore Foods" />
-      <button
-        data-testid="explore-by-ingredient"
-        type="button"
-        onClick={ () => history.push('/explore/foods/ingredients') }
-      >
-        By Ingredient
+      <div className="explore-container">
+        <button
+          className="food-ingredients btn-explore-category"
+          data-testid="explore-by-ingredient"
+          type="button"
+          onClick={ () => history.push('/explore/foods/ingredients') }
+        >
+          By Ingredient
 
-      </button>
-      <button
-        data-testid="explore-by-nationality"
-        type="button"
-        onClick={ () => history.push('/explore/foods/nationalities') }
-      >
-        By Nationality
-      </button>
-      <button
-        data-testid="explore-surprise"
-        type="button"
-        onClick={ () => history.push(`/foods/${surprise.idMeal}`) }
-      >
-        Surprise me!
-      </button>
+        </button>
+        <button
+          className="food-nationality btn-explore-category"
+          data-testid="explore-by-nationality"
+          type="button"
+          onClick={ () => history.push('/explore/foods/nationalities') }
+        >
+          By Nationality
+        </button>
+        <button
+          className="food-surprise btn-explore-category"
+          data-testid="explore-surprise"
+          type="button"
+          onClick={ () => history.push(`/foods/${surprise.idMeal}`) }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
     </div>
   );

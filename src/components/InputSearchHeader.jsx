@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import handleFoodSearch from '../helpers/getMealsAPI';
 import handleDrinksSearch from '../helpers/getDrinksAPI';
 import searchContext from '../context/searchContext';
+import './InputSearchHeader.css';
 
 function InputSearchHeader({ title }) {
   const { foods, setFoods, drinks,
@@ -34,62 +35,69 @@ function InputSearchHeader({ title }) {
   };
 
   return (
-    <>
+    <div className="search-container">
       { foods.length === 1
        && <Redirect to={ `/foods/${foods[0].idMeal}` } />}
       { drinks.length === 1
        && <Redirect to={ `/drinks/${drinks[0].idDrink}` } />}
       <form>
-        <label htmlFor="inputSearch">
-          <input
-            data-testid="search-input"
-            type="text"
-            id="inputSearch"
-            onChange={ ({ target }) => setSearch({ ...search, inputText: target.value }) }
-          />
-        </label>
-        <label htmlFor="ingredientRadio">
-          <input
-            value="ingredient"
-            name="searchRadio"
-            id="ingredientRadio"
-            data-testid="ingredient-search-radio"
-            type="radio"
-            onChange={ handleChange }
-          />
-          Ingredient
-        </label>
-        <label htmlFor="nameRadio">
-          <input
-            value="name"
-            id="nameRadio"
-            name="searchRadio"
-            data-testid="name-search-radio"
-            type="radio"
-            onChange={ handleChange }
-          />
-          Name
-        </label>
-        <label htmlFor="firstLetterRadio">
-          <input
-            value="firstLetter"
-            id="firstLetterRadio"
-            name="searchRadio"
-            data-testid="first-letter-search-radio"
-            type="radio"
-            onChange={ handleChange }
-          />
-          First Letter
-        </label>
-        <button
-          data-testid="exec-search-btn"
-          type="button"
-          onClick={ onSearch }
-        >
-          Search
-        </button>
+        <div className="exec-search-container">
+          <label className="input-label-search" htmlFor="inputSearch">
+            <input
+              className="input-search"
+              data-testid="search-input"
+              type="text"
+              id="inputSearch"
+              onChange={ ({ target }) => setSearch({ ...search,
+                inputText: target.value }) }
+            />
+          </label>
+          <button
+            className="search-button"
+            data-testid="exec-search-btn"
+            type="button"
+            onClick={ onSearch }
+          >
+            Search
+          </button>
+        </div>
+        <div className="search-options">
+          <label htmlFor="ingredientRadio">
+            <input
+              value="ingredient"
+              name="searchRadio"
+              id="ingredientRadio"
+              data-testid="ingredient-search-radio"
+              type="radio"
+              onChange={ handleChange }
+            />
+            Ingredient
+          </label>
+          <label htmlFor="nameRadio">
+            <input
+              value="name"
+              id="nameRadio"
+              name="searchRadio"
+              data-testid="name-search-radio"
+              type="radio"
+              onChange={ handleChange }
+            />
+            Name
+          </label>
+          <label htmlFor="firstLetterRadio">
+            <input
+              value="firstLetter"
+              id="firstLetterRadio"
+              name="searchRadio"
+              data-testid="first-letter-search-radio"
+              type="radio"
+              onChange={ handleChange }
+            />
+            First Letter
+          </label>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

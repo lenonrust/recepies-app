@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import BtnFavorite from '../components/BtnFavorite';
 import RecommendationCard from '../components/RecommendationCard';
-import './FoodDetails.css';
+import './FoodAndDrinkDetails.css';
 
 const TWENTY = 20;
 const copy = require('clipboard-copy');
@@ -102,45 +102,73 @@ function FoodDetails(props) {
     }
   };
   return (
-    <div>
+    <div className="main-details-container">
       <img
-        width="150px"
-        height="150px"
+        className="img-header-details"
         data-testid="recipe-photo"
         src={ details.strMealThumb }
         alt={ details.strMeal }
       />
-      <h2 data-testid="recipe-title">{details.strMeal}</h2>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ copyToShare }
-      >
-        <img src={ shareIcon } alt="shareIcon" />
-      </button>
-      <BtnFavorite
-        handleFavorite={ favoriteRecipe }
-        favBtn={ favBtn }
-      />
-      {displayClipboardMessage && <span>Link copied!</span>}
-      <h3 data-testid="recipe-category">{details.strCategory}</h3>
-      {ingredient.map((itr, index) => (
-        <p
-          key={ `ingredient${index}` }
-          data-testid={ `${index}-ingredient-name-and-measure` }
+      <div className="header-instructions">
+        <h2
+          className="title-details"
+          data-testid="recipe-title"
         >
-          {itr}
-        </p>
-      ))}
-      <p data-testid="instructions">{details.strInstructions}</p>
-      <iframe
-        data-testid="video"
-        title="myvideo"
-        width="320"
-        height="200"
-        src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
-        frameBorder="0"
-      />
+          { details.strMeal && details.strMeal.toUpperCase()}
+
+        </h2>
+        <div className="header-instructions-buttons">
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ copyToShare }
+          >
+            <img src={ shareIcon } alt="shareIcon" />
+          </button>
+          <BtnFavorite
+            handleFavorite={ favoriteRecipe }
+            favBtn={ favBtn }
+          />
+        </div>
+      </div>
+      <div className="display-clipp">
+        <h3
+          className="category-title"
+          data-testid="recipe-category"
+        >
+          {details.strCategory}
+        </h3>
+        {displayClipboardMessage && <span className="share-span">Link copied!</span>}
+      </div>
+      <h4 className="ingredients-title">INGREDIENTS</h4>
+      <ul className="ingredients-list">
+        {ingredient.map((itr, index) => (
+          <li
+            key={ `ingredient${index}` }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {itr}
+          </li>
+        ))}
+      </ul>
+      <h4 className="instructions-title">INSTRUCTIONS</h4>
+      <p
+        className="instructions-details"
+        data-testid="instructions"
+      >
+        {details.strInstructions}
+      </p>
+      <div className="video-player">
+        <iframe
+          data-testid="video"
+          title="myvideo"
+          width="340"
+          height="200"
+          src={ (details.strYoutube) && details.strYoutube.replace('watch?v=', 'embed/') }
+          frameBorder="0"
+        />
+      </div>
+      <h4 className="recommendations-title">SUGGESTIONS</h4>
       <RecommendationCard title="Meals" />
       {hideButton && (
         <button

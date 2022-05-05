@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import searchContext from '../context/searchContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import './ExploreIngredients.css';
 
 const TWELV = 12;
 
@@ -29,27 +30,36 @@ function ExploreDrinksbyIngredients() {
     history.push('/drinks');
   };
   return (
-    <div>
+    <div className="explore-ingredients-main-container">
       <Header title="Explore Ingredients" />
-      { ingredients.slice(0, TWELV)
-        .map((itr, index) => (
-          <button
-            key={ `drink-ingredient${index}` }
-            type="button"
-            onClick={ () => handleSearchIngredient(itr.strIngredient1) }
-          >
+      <div className="explore-ingredients-section">
+        { ingredients.slice(0, TWELV)
+          .map((itr, index) => (
+            <button
+              className="ingredients-explore-buttons"
+              key={ `drink-ingredient${index}` }
+              type="button"
+              onClick={ () => handleSearchIngredient(itr.strIngredient1) }
+            >
 
-            <div data-testid={ `${index}-ingredient-card` }>
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ `https://www.thecocktaildb.com/images/ingredients/${itr.strIngredient1}-Small.png` }
-                alt={ itr.strIngredient1 }
-              />
-              <p data-testid={ `${index}-card-name` }>{itr.strIngredient1}</p>
+              <div data-testid={ `${index}-ingredient-card` }>
+                <img
+                  className="ingredients-explore-image"
+                  data-testid={ `${index}-card-img` }
+                  src={ `https://www.thecocktaildb.com/images/ingredients/${itr.strIngredient1}-Small.png` }
+                  alt={ itr.strIngredient1 }
+                />
+                <p
+                  className="title-explore-ingredients"
+                  data-testid={ `${index}-card-name` }
+                >
+                  {itr.strIngredient1}
+                </p>
 
-            </div>
-          </button>
-        )) }
+              </div>
+            </button>
+          )) }
+      </div>
       <Footer />
     </div>
   );

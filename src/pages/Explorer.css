@@ -1,0 +1,36 @@
+.main-container {
+  max-width: 360px;
+}
+
+.explore-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-explorer {
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 3px black;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  height: 175px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  text-shadow: 1px 1px 5px black;
+  width: 350px;
+}
+
+.btn-explore-foods {
+  background: url('https://media.istockphoto.com/photos/varied-food-carbohydrates-protein-vegetables-fruits-dairy-legumes-on-picture-id1218254547?b=1&k=20&m=1218254547&s=170667a&w=0&h=mOEC7x7qU5NC78mCULs-jAPeLkxy8opOvIbGSnwmAyw=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.btn-explore-drinks {
+  background: url('http://www.cruiseadvice.com.au/wp-content/uploads/2016/11/drinks-1280x800-1024x640.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

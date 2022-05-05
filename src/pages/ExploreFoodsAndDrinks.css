@@ -1,0 +1,52 @@
+.main-container {
+  max-width: 360px;
+}
+
+.explore-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 520px;
+}
+
+.btn-explore-category {
+  border: none;
+  box-shadow: 0 2px 3px black;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  height: 155px;
+  margin: 0 0 15px;
+  text-shadow: 1px 1px 1px  black , 1px -1px 1px black;
+  width: 340px;
+}
+
+.food-ingredients {
+  background: url('https://media.istockphoto.com/photos/herbs-and-spices-for-cooking-on-dark-background-picture-id941858854?k=20&m=941858854&s=612x612&w=0&h=c6_v6jU2u8hbbxIhldg4TtY5BYzn0i2UovFdAr-xAUU=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.food-nationality {
+  background: url('https://i.pinimg.com/736x/ea/7c/28/ea7c28a18ac20886e154e6833267d57b.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.food-surprise {
+  background: url('../images/questionMark_food.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.drink-ingredients {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0q5a_JijHMIm3SPcwa1IS8uZhjc1_8vKf9w&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.drink-surprise {
+  background: url('https://img.freepik.com/free-photo/beer-bottle-question-marks-kaka-choose-beer-why-drink-alcohol_188237-210.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

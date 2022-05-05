@@ -1,0 +1,79 @@
+:root {
+
+  --main-color: #4a9c5e;
+
+  --text-color: rgb(97, 97, 97);
+
+  --secondary-color: white;
+}
+
+h3 {
+  height: 30px;
+}
+
+.card-section-nationality {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 75px;
+  margin-top: 7px;
+  max-width: 360px;
+}
+
+.container-nationality {
+  max-width: 360px;
+}
+
+.button-card-nationality {
+  background-color: transparent;
+  border: none;
+  margin: 8px  0;
+}
+
+.card-image-nationality {
+  box-shadow: 0 2px 3px black;
+  height: 150px;
+  margin-bottom: 5px;
+  transition: 0.2s ease-in-out;
+  width: 150px;
+}
+
+.card-item-nationality {
+  display: flex;
+  flex-direction: column;
+  height: 185px;
+  justify-content: center;
+  width: 165px;
+}
+
+
+.card-item-nationality:hover .card-image-nationality:hover {
+  height: 165px;
+  width: 165px;
+}
+
+.card-title-nationality {
+  height: 10px;
+  margin-top: 5px;
+}
+
+.dropdown-nationality {
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px black;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 17px;
+  font-weight: 600;
+  outline: none;
+  padding: 2px;
+  text-align: center;
+  text-shadow: 1px 1px 1px  black;
+  width: 150px;
+}
+
+.option-nationality {
+  padding: 1px;
+}

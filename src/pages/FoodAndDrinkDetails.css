@@ -1,0 +1,134 @@
+.main-details-container {
+  box-sizing: border-box;
+  max-width: 360px;
+  overflow-x: none;
+}
+
+.start-recipe-btn {
+  background-color: #4a9c5e;
+  border: none;
+  bottom: 0;
+  box-shadow: 0 -4px 3px -3px black;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  height: 30px;
+  max-width: 360px;
+  position: fixed;
+  text-shadow: 0 0 1px black;
+  width: 100%;
+}
+
+.start-recipe-btn:disabled {
+  background-color: gray;
+  color: white;
+  text-shadow: 0 0 1px black;
+}
+
+.title-details {
+  align-self: flex-end;
+  margin: 0;
+  width: 280px;
+}
+
+.img-header-details {
+  height: 200px;
+  margin-bottom: 10px;
+  max-width: 360px;
+  object-fit: cover;
+  object-position: 0 40%;
+  width: 360px;
+}
+
+.header-instructions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 360px;
+}
+
+.header-instructions-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 70px;
+}
+
+.header-instructions-buttons button {
+  background-color: transparent;
+  border: none;
+  height: 20px;
+  margin-left: 5px;
+  width: 20px;
+}
+
+
+.category-title {
+  margin: 0;
+}
+
+.ingredients-title {
+  max-width: 360px;
+  padding: 5px 0 10px;
+  text-align: center;
+}
+
+.ingredients-list {
+  padding: 5px 5px 5px 30px;
+}
+
+li {
+  padding: 3px 0;
+}
+
+.instructions-details {
+  padding-bottom: 15px;
+  text-align: justify;
+  width: 330px;
+}
+
+.instructions-title {
+  max-width: 360px;
+  padding: 20px 0 15px;
+  text-align: center;
+}
+
+.recommendations-title {
+  padding: 15px;
+  text-align: center;
+}
+
+.video-player {
+  display: flex;
+  padding: 10px 0;
+}
+
+.display-clipp {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.share-span {
+  margin: 0;
+}
+
+.ingredients-list-in-progress {
+  padding: 10px;
+}
+
+.ingredient-in-progress {
+  padding: 3px;
+}
+
+.label-input-inProgress {
+  margin-left: 5px;
+}
+
+.instructions-inprogress {
+  margin-bottom: 45px;
+  padding-bottom: 15px;
+  text-align: justify;
+  width: 330px;
+}

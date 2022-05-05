@@ -5,6 +5,7 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import InputSearchHeader from './InputSearchHeader';
 import searchContext from '../context/searchContext';
+import './Header.css';
 
 function Header({ title }) {
   const { isVisible, setIsVisible } = useContext(searchContext);
@@ -12,32 +13,38 @@ function Header({ title }) {
   const history = useHistory();
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={ () => history.push('/profile') }
-      >
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="profile-icon"
-        />
+    <div className="header-container">
+      <div className="header-buttons">
+        { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
+          <button
+            className="header-btn"
+            type="button"
+            onClick={ () => setIsVisible(!isVisible) }
+          >
+            <img
+              className="img-header"
+              data-testid="search-top-btn"
+              src={ searchIcon }
+              alt="search-icon"
+            />
 
-      </button>
-      <h1 data-testid="page-title">{ title }</h1>
-      { title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
+          </button>
+        ) : (<div className="invisible" />) }
+        <h1 className="header-title" data-testid="page-title">{ title }</h1>
         <button
+          className="header-btn"
           type="button"
-          onClick={ () => setIsVisible(!isVisible) }
+          onClick={ () => history.push('/profile') }
         >
           <img
-            data-testid="search-top-btn"
-            src={ searchIcon }
-            alt="search-icon"
+            className="img-header"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="profile-icon"
           />
 
         </button>
-      ) : ('') }
+      </div>
       { isVisible && <InputSearchHeader title={ title } />}
     </div>
   );

@@ -1,0 +1,29 @@
+.explore-ingredients-main-container {
+  max-width: 360px;
+}
+
+.ingredients-explore-buttons {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.ingredients-explore-image {
+  box-shadow: 0 2px 3px black;
+  height: 100px;
+  margin: 5px 0;
+  width: 100px;
+}
+
+.explore-ingredients-section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+  padding: 0 7px;
+}
+
+.title-explore-ingredients {
+  font-weight: 900;
+  height: 30px;
+  width: 100px;
+}

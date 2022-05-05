@@ -37,14 +37,16 @@ function RecommendationCard({ title }) {
             img = recommendation.strDrinkThumb;
           }
           return (
-            <div
-              data-testid={ `${index}-recomendation-card` }
-              className="slide-card"
-              key={ `recommendations${index}` }
-            >
-              <img src={ img } alt={ name } />
+            <div key={ `recommendations${index}` }>
+              <div
+                data-testid={ `${index}-recomendation-card` }
+                className="slide-card"
+              >
+                <img src={ img } alt={ name } />
+              </div>
               <h3 data-testid={ `${index}-recomendation-title` }>{name}</h3>
             </div>
+
           );
         })}
     </div>

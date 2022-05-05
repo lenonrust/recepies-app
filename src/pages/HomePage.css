@@ -1,0 +1,112 @@
+.main-container {
+  max-width: 360px;
+}
+
+.category-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 340px;
+
+}
+
+.card-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 75px;
+}
+
+.button-card {
+  background-color: transparent;
+  border: none;
+  margin: 8px  0;
+}
+
+
+.button-category {
+  border: none;
+  box-shadow: 0 2px 3px black;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  height: 55px;
+  margin: 0 0 6px;
+  text-shadow: 1px 1px 5px black;
+  width: 100px;
+}
+
+.button-Beef {
+  background: url('https://p4.wallpaperbetter.com/wallpaper/959/297/208/greens-pepper-steak-meat-wallpaper-preview.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Breakfast {
+  background: url('https://media.istockphoto.com/photos/full-traditional-english-breakfast-picture-id498714608?b=1&k=20&m=498714608&s=170667a&w=0&h=A41siJ6kvmnR1uokh6tsv1rsmFsbo2cC_i2JPdBaz2c=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Chicken {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS13ydRVlhP_ps1lSxweG0FDmlD54f8H2qsv-3nnGd6Es5YwQZWj-Jx-uezpcqMGAr-OqE&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Dessert {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFClBl4LngUQUFcQ1sC1gaCisBeZqeTbuPRA&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.button-Goat {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx0N3NoFQCl3prJbKJ3QIJKVOrthtUJLHA-7tPz-9fmRm_ZWhTWaa-jTom-QMLW6PyPns&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.btn-all-food {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYSEh6n_tzMQycRd5KapPk1y4fKUxgAbhPHQ&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn-all-drink {
+  background: url('https://images.pexels.com/photos/1283219/pexels-photo-1283219.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Cocoa {
+  background: url('https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2020/07/07/drinks-de-chocolate.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Shake {
+  background: url('https://static.baratocoletivo.com.br/2019/0124/10018544/g_cafeteria-3-coracoes864213b6e1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Cocktail {
+  background: url('http://blog.chefsclub.com.br/wp-content/uploads/2017/05/cocktail.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Ordinary {
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyNk8TvNY5ZEwSVNiJxNUOjW5SEpM8OZNXqg&usqp=CAU');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.button-Other {
+  background: url('https://cardapio.menu/storage/media/dishes_main/2286054/cuba-libre.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

@@ -18,24 +18,27 @@ function ExploreDrinks() {
   }, []);
 
   return (
-    <div>
+    <div className="main-container">
       <Header title="Explore Drinks" />
-      <button
-        data-testid="explore-by-ingredient"
-        type="button"
-        onClick={ () => history.push('/explore/drinks/ingredients') }
-      >
-        By Ingredient
-      </button>
-      <button
-        data-testid="explore-surprise"
-        type="button"
-        onClick={ () => history.push(`/drinks/${surprise.idDrink}`) }
-      >
-        Surprise me!
+      <div className="explore-container">
+        <button
+          className="drink-ingredients btn-explore-category"
+          data-testid="explore-by-ingredient"
+          type="button"
+          onClick={ () => history.push('/explore/drinks/ingredients') }
+        >
+          By Ingredient
+        </button>
+        <button
+          className="drink-surprise btn-explore-category"
+          data-testid="explore-surprise"
+          type="button"
+          onClick={ () => history.push(`/drinks/${surprise.idDrink}`) }
+        >
+          Surprise me!
 
-      </button>
-
+        </button>
+      </div>
       <Footer />
     </div>
   );

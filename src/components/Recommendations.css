@@ -9,14 +9,22 @@ body {
 .carousel {
   align-self: center;
   display: flex;
-  overflow-y: scroll;
-  width: 100vw;
+  margin-bottom: 35px;
+  overflow-x: scroll;
+  padding: 0 0 0 10px;
+  text-align: center;
+  width: 360px;
 }
 
 .slide-card img {
-  height: 170px;
+  width: 165px;
+}
+
+.main-container-slide-card {
+  width: 360px;
 }
 
 .slide-card {
-  margin: 0 5px;
+  margin-right: 10px;
 }
+

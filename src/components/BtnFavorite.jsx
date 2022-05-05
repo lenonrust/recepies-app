@@ -11,6 +11,7 @@ function BtnFavorite({ handleFavorite, favBtn }) {
     >
       <img
         data-testid="favorite-btn"
+        width="25px"
         src={ favBtn ? blackHeartIcon : whiteHeartIcon }
         alt="blackHeartIcon"
       />

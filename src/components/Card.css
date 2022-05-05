@@ -4,11 +4,26 @@
 }
 
 .card-item {
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  height: 190px;
+  justify-content: center;
+  width: 165px;
+}
+
+.card-image {
+  box-shadow: 0 2px 3px black;
+  height: 150px;
+  transition: 0.2s ease-in;
   width: 150px;
 }
 
-.card-item img {
-  height: 150px;
-  width: 150px;
+.card-item:hover .card-image:hover {
+  height: 165px;
+  width: 165px;
+}
+
+.card-title {
+  height: 10px;
+  margin-top: 5px;
 }
