@@ -22,6 +22,7 @@ function Foods() {
     } else { url = 'https://www.themealdb.com/api/json/v1/1/search.php?s='; }
 
     const response = await fetch(url);
+    console.log('url: ', url, 'response: ', response);
     const data = await response.json();
     setFoods(data.meals);
     setToggleFilter('');
@@ -60,7 +61,18 @@ function Foods() {
   return (
     <div className="main-container">
       <Header title="Foods" />
+<<<<<<< HEAD
       <div className="category-section">
+=======
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ initialFood }
+      >
+        All
+      </button>
+      {foodCategory.slice(0, FIVE).map((cat) => (
+>>>>>>> b0db619aa0360eaf39fd5c6b6dac719114912d29
         <button
           className="button-category btn-all-food"
           type="button"
@@ -69,6 +81,7 @@ function Foods() {
         >
           All
         </button>
+<<<<<<< HEAD
         { foodCategory.slice(0, FIVE).map((cat) => (
           <button
             className={ `button-${cat.strCategory} button-category` }
@@ -85,6 +98,12 @@ function Foods() {
       { foods.length >= 1 && (
         <div className="card-section">
           { foods.slice(0, TWELVE).map((iter, index) => (
+=======
+      ))}
+      {foods.length >= 1 && (
+        <div>
+          {foods.slice(0, TWELVE).map((iter, index) => (
+>>>>>>> b0db619aa0360eaf39fd5c6b6dac719114912d29
             <button
               className="button-card"
               type="button"
@@ -92,7 +111,7 @@ function Foods() {
               onClick={ () => history.push(`/foods/${iter.idMeal}`) }
             >
               <Card index={ index } name={ iter.strMeal } img={ iter.strMealThumb } />
-            </button>)) }
+            </button>))}
         </div>
       )}
       <Footer />

@@ -9,13 +9,13 @@ import DoneRecipes from '../pages/DoneRecipes';
 const profileTopBtn = 'profile-top-btn';
 const pageTitle = 'page-title';
 const searchTopBtn = 'search-top-btn';
-describe('Testing "Header" component', () => {
+describe('9. Testing "Header" component', () => {
   // a configuração abaixo(Linhas 12 e 13) corrige problema de funcionalidade do jest ("Not implemented: window.computedStyle(elt, pseudoElt")
   // quando passado parametro title em "render(<Header title = 'Foods'/>)"
   // linhas 15, 28 e 38
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('Testing if "Header" work as expected when receives title Foods', () => {
+  it('9.1 Testing if "Header" work as expected when receives title Foods', () => {
     render(<Header title="Foods" />);
     const headerProfileBtn = screen.queryByTestId(profileTopBtn);
     const headerTitle = screen.queryByTestId(pageTitle);
