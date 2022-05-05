@@ -21,7 +21,6 @@ function InputSearchHeader({ title }) {
       if (dataFood) {
         setFoods(dataFood);
       } else if (dataFood === null) {
-        console.log('ENTROU NO ELSE');
         global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
     } else if (title.includes('Drink')) {

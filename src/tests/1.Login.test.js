@@ -5,8 +5,8 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import Login from '../pages/Login';
 
-describe('Testing Login page', () => {
-  it('Testing log in ', () => {
+describe('1 - Testing Login page', () => {
+  it('1.1 - Testing log in ', () => {
     render(<Login />);
     const emailInput = screen.getByTestId('email-input');
     const passwdInput = screen.getByTestId('password-input');
@@ -28,10 +28,10 @@ describe('Testing Login page', () => {
     userEvent.type(passwdInput, '1234567');
     expect(loginBtn).not.toBeDisabled();
   });
-  it('Testing localStorage operation ', () => {
+  it('1.2 - Testing localStorage operation ', () => {
     // render(<Login />);
   });
-  it('Testing path after log in ', () => {
+  it('1.3 - Testing path after log in ', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>

@@ -5,9 +5,9 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import Footer from '../components/Footer';
 
-describe('19 - Implemente os elementos do menu inferior'
+describe('3 - Implemente os elementos do menu inferior'
 + ' respeitando os atributos descritos no protótipo', () => {
-  it('19.1 - Tem os data-testids solicitados', () => {
+  it('3.1 - Tem os data-testids solicitados', () => {
     // cy.visit('http://localhost:3000/foods');
     render(<Footer />);
 
@@ -20,7 +20,7 @@ describe('19 - Implemente os elementos do menu inferior'
     expect(exploreBtn).toBeInTheDocument();
   });
 
-  it('19.2 - Redireciona para a tela Drinks corretamente', () => {
+  it('3.2 - Redireciona para a tela Drinks corretamente', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -36,7 +36,7 @@ describe('19 - Implemente os elementos do menu inferior'
     expect(history.location.pathname).toBe('/drinks');
   });
 
-  it('19.3 - Redireciona para a tela Foods corretamente', () => {
+  it('3.3 - Redireciona para a tela Foods corretamente', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -52,7 +52,7 @@ describe('19 - Implemente os elementos do menu inferior'
     expect(history.location.pathname).toBe('/foods');
   });
 
-  it('19.4 - Redireciona para a tela Explore corretamente', () => {
+  it('3.4 - Redireciona para a tela Explore corretamente', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
