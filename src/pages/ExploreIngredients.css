@@ -9,10 +9,11 @@
 }
 
 .ingredients-explore-image {
-  box-shadow: 0 2px 3px black;
+
+  /* box-shadow: 0 2px 3px black; */
+  filter: drop-shadow(0 4px 5px black);
   height: 100px;
-  margin: 5px 0;
-  width: 100px;
+  margin: 5px 0 3px;
 }
 
 .explore-ingredients-section {
@@ -25,5 +26,6 @@
 .title-explore-ingredients {
   font-weight: 900;
   height: 30px;
+  text-shadow: 1px 1px 1px gray;
   width: 100px;
 }

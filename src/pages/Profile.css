@@ -1,0 +1,64 @@
+:root {
+
+  --main-color: #4a9c5e;
+
+  --text-color: rgb(97, 97, 97);
+
+  --secondary-color: white;
+}
+
+.profile-main-container {
+  max-width: 360px;
+}
+
+.profile-user {
+  align-items: center;
+  border-bottom: 1px solid rgb(77, 77, 77);
+  box-shadow: 0 5px 5px -4px  rgb(0 0 0 / 0.4);
+  color: black;
+  display: flex;
+  font-weight: 500;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  text-shadow: 1px 1px 1px  rgb(0 0 0 / 0.4);
+}
+
+.profile-mail {
+  font-size: 20px;
+  margin: 0;
+}
+
+.profile-body {
+  padding: 10px;
+}
+
+.profile-buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.profile-button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  display: flex;
+  font-size: 15px;
+  margin: 0;
+  padding: 10px 0;
+  text-shadow: 1px 1px 2px  rgb(0 0 0 / 0.4);
+  width: 100%;
+}
+
+.profile-icon {
+  filter: drop-shadow(1px 1px 2px  rgb(0 0 0 / 0.4));
+  height: 20px;
+  margin: 0 10px 0 0;
+  width: 20px;
+}
+
+.profile-button:hover {
+  color: black;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+}

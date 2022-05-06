@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import './FavoriteCard.css';
 
 const copy = require('clipboard-copy');
 
@@ -27,7 +28,7 @@ function FavoriteDrinkCard({ favorite, index, removeFavoriteState }) {
   };
 
   return (
-    <>
+    <div className="favorite-main-container">
       <button type="button" onClick={ () => history.push(`/drinks/${favorite.id}`) }>
         <img
           width="100px"
@@ -62,7 +63,7 @@ function FavoriteDrinkCard({ favorite, index, removeFavoriteState }) {
         <p data-testid={ `${index}-horizontal-name` }>{ favorite.name }</p>
       </button>
       <p data-testid={ `${index}-horizontal-top-text` }>{ favorite.alcoholicOrNot }</p>
-    </>
+    </div>
   );
 }
 

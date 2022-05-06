@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DoneRecipesCard from '../components/DoneRecipesCard';
 import Header from '../components/Header';
+import './DoneRecipes.css';
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
@@ -36,10 +37,11 @@ function DoneRecipes() {
   }, []);
 
   return (
-    <div>
+    <div className="done-recipes-main-container">
       <Header title="Done Recipes" />
-      <div>
+      <div className="done-recipes-body">
         <button
+          className="done-recipes-button done-all"
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ toRenderRecipes }
@@ -47,6 +49,7 @@ function DoneRecipes() {
           All
         </button>
         <button
+          className="done-recipes-button done-food"
           type="button"
           data-testid="filter-by-food-btn"
           onClick={ toRenderRecipes }
@@ -54,6 +57,7 @@ function DoneRecipes() {
           Food
         </button>
         <button
+          className="done-recipes-button done-drink"
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ toRenderRecipes }

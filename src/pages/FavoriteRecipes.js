@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import FavoriteDrinkCard from '../components/FavoriteDrinkCard';
 import FavoriteFoodCard from '../components/FavoriteFoodCard';
+import './DoneRecipes.css';
 
 function FavoriteRecipes() {
   const [favorites, setFavorites] = useState([]);
@@ -25,30 +26,35 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div>
+    <div className="done-recipes-main-container">
       <Header title="Favorite Recipes" />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFavorites(JSON
-          .parse(localStorage.getItem('favoriteRecipes'))) }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ filterFoodsFavorites }
-      >
-        Foods
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ filterDrinksFavorites }
-      >
-        Drinks
-      </button>
+      <div className="done-recipes-body">
+        <button
+          className="done-recipes-button done-all"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFavorites(JSON
+            .parse(localStorage.getItem('favoriteRecipes'))) }
+        >
+          All
+        </button>
+        <button
+          className="done-recipes-button done-food"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ filterFoodsFavorites }
+        >
+          Foods
+        </button>
+        <button
+          className="done-recipes-button done-drink"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ filterDrinksFavorites }
+        >
+          Drinks
+        </button>
+      </div>
       {
         favorites && favorites.map((favorite, index) => (
           favorite.type === 'food'

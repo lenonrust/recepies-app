@@ -1,0 +1,130 @@
+.done-recipes-main-container {
+  max-width: 360px;
+}
+
+.done-recipes-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px 10px;
+}
+
+.done-recipes-button {
+  border: none;
+  box-shadow: 0 2px 3px black;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  height: 55px;
+  margin: 0 0 6px;
+  text-shadow: 1px 1px 5px black;
+  width: 100px;
+}
+
+.done-all {
+  background: url('https://wallpapercave.com/wp/5kWD6JT.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.done-food {
+  background: url('https://wallpaperaccess.com/full/767036.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.done-drink {
+  background: url('https://image.winudf.com/v2/image/Y29tLkRyZWFtV2FsbHBhcGVycy5Db2NrdGFpbDAxX3NjcmVlbnNob3RzXzFfNTE1M2Y3Y2U/screen-1.jpg?fakeurl=1&type=.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.card-img {
+  border-radius: 5px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+  height: 140px;
+  margin: 0;
+  width: 140px;
+}
+
+.card-done-recipes {
+  border-radius: 5px;
+  box-shadow: 0 0 3px black;
+  display: flex;
+  font-weight: 600;
+  height: 140px;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 1px rgb(177, 176, 176);
+  width: 330px;
+}
+
+.type-share {
+  display: flex;
+  flex-direction: column;
+  height: 125px;
+  justify-content: space-between;
+  margin: 0;
+  width: 190px;
+}
+
+.link {
+  color: black;
+  margin: 0;
+  margin-bottom: 3px;
+  text-decoration: none;
+  text-shadow: 1px 2px 1px rgb(177, 176, 176);
+}
+
+.title-category {
+  display: flex;
+  flex-direction: column;
+  height: 115px;
+  margin: 0;
+  padding: 5px 5px 5px 8px;
+  width: 155px;
+}
+
+.title-category p {
+  margin: 0;
+}
+
+.shared-button {
+  height: 40px;
+  margin: 0;
+  width: 40px;
+}
+
+.copied {
+  left: 15px;
+  margin: 0;
+  position: relative;
+}
+
+.done-recipe-share-icon {
+  background-color: transparent;
+  border: none;
+  margin: 5px 5px 0 0;
+  padding: 3px;
+}
+
+.done-recipe-share-icon:hover {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+}
+
+.name-x {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.date {
+  position: relative;
+  top: 10px;
+}
+
+.copied-container {
+  height: 10px;
+}
+
+.name-x:hover {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.4));
+}

@@ -19,15 +19,12 @@
 
 .header-container {
   background-color: var(--main-color);
-
-  /* border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem; */
   box-shadow: 0 4px 3px -2px black;
   color: white;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  padding: 5px 0 10px;
+  padding: 5px 10px 10px;
   text-shadow: 0 0 1px black;
   width: 360px;
 }

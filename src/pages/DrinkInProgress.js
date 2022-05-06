@@ -115,47 +115,73 @@ function DrinkInProgress(props) {
     return '';
   }
   return (
-    <>
+    <div className="main-details-container">
       <img
+        className="img-header-details"
         width="150px"
         height="150px"
         data-testid="recipe-photo"
         src={ details.strDrinkThumb }
         alt={ details.strDrink }
       />
-      <h2 data-testid="recipe-title">{details.strDrink}</h2>
-      <button
-        data-testid="share-btn"
-        type="button"
-        onClick={ copyToShare }
-      >
-        <img src={ shareIcon } alt="shareIcon" />
-      </button>
-      <BtnFavorite handleFavorite={ handleFavorite } favBtn={ favBtn } />
-      { displayClipboardMessage && <span>Link copied!</span> }
-      <h3 data-testid="recipe-category">{details.strCategory}</h3>
-      { ingredient.map((itr, index) => (
-        <div key={ `ingredient${index}` }>
-          <label
-            data-testid={ `${index}-ingredient-step` }
-            htmlFor={ `checkIngredient${index}` }
-            style={ ingredientList
-              .find((ingredien) => ingredien === itr)
-              ? { textDecoration: 'line-through' }
-              : { textDecoration: '' } }
+      <div className="header-instructions">
+        <h2
+          className="title-details"
+          data-testid="recipe-title"
+        >
+          {details.strDrink}
+        </h2>
+        <div className="header-instructions-buttons">
+          <button
+            data-testid="share-btn"
+            type="button"
+            onClick={ copyToShare }
           >
-            <input
-              id={ `checkIngredient${index}` }
-              type="checkbox"
-              name={ itr }
-              onChange={ handleCheckbox }
-              checked={ ingredientList.find((ing) => ing === itr) }
-            />
-            {itr}
-          </label>
+            <img src={ shareIcon } alt="shareIcon" />
+          </button>
+          <BtnFavorite handleFavorite={ handleFavorite } favBtn={ favBtn } />
         </div>
-      ))}
-      <p data-testid="instructions">{details.strInstructions}</p>
+      </div>
+      <div className="display-clipp">
+        <h3
+          className="category-title"
+          data-testid="recipe-category"
+        >
+          {details.strCategory}
+        </h3>
+        { displayClipboardMessage && <span className="share-span">Link copied!</span> }
+      </div>
+      <h4 className="ingredients-title">INGREDIENTS</h4>
+      <div className="ingredients-list-in-progress">
+        { ingredient.map((itr, index) => (
+          <div className="ingredient-in-progress" key={ `ingredient${index}` }>
+            <label
+              data-testid={ `${index}-ingredient-step` }
+              htmlFor={ `checkIngredient${index}` }
+              style={ ingredientList
+                .find((ingredien) => ingredien === itr)
+                ? { textDecoration: 'line-through' }
+                : { textDecoration: '' } }
+            >
+              <input
+                id={ `checkIngredient${index}` }
+                type="checkbox"
+                name={ itr }
+                onChange={ handleCheckbox }
+                checked={ ingredientList.find((ing) => ing === itr) }
+              />
+              {itr}
+            </label>
+          </div>
+        ))}
+      </div>
+      <h4 className="instructions-title">INSTRUCTIONS</h4>
+      <p
+        className="instructions-inprogress"
+        data-testid="instructions"
+      >
+        {details.strInstructions}
+      </p>
       <button
         className="start-recipe-btn"
         data-testid="finish-recipe-btn"
@@ -165,7 +191,7 @@ function DrinkInProgress(props) {
       >
         Finish Recipe
       </button>
-    </>
+    </div>
   );
 }
 
