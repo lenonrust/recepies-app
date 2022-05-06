@@ -1,13 +1,18 @@
-import React from "react";
-import { Router } from "react-router-dom";
-import SearchProvider from "../context/SearchProvider";
-import Routes from "../helpers/Routes";
+import { screen, act, render } from '@testing-library/react';
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
+import SearchProvider from '../context/SearchProvider';
+import Routes from '../helpers/Routes';
+
+const CONST_8 = 8;
 
 describe('6 - Testa na tela de detalhes de comidas se'
   + ' ', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('6.2 - Os botões'
+  it('6.1 - Os checkboxes'
       + ' funcionam como esperado', async () => {
     const history = createMemoryHistory();
     await act(async () => {
@@ -19,23 +24,14 @@ describe('6 - Testa na tela de detalhes de comidas se'
         </Router>,
       );
     });
-    history.push('/foods/');
+    history.push('/foods/52771/in-progress');
 
-    const firstCard = await screen.findByTestId('0-recipe-card');
-    expect(firstCard).toBeInTheDocument();
-    history.push('/foods/52771');
+    const checkboxList = await screen.findAllByRole('checkbox');
+    expect(checkboxList).toHaveLength(CONST_8);
 
-    expect(history.location.pathname).toBe('/foods/52771');
-
-    const favBtn = await screen.findByRole('button', { name: /blackhearticon/i });
-
-    userEvent.click(favBtn);
-    userEvent.click(favBtn);
-
-    const startBtn = await screen.findByRole('button', { name: /start recipe/i });
-    expect(startBtn).toBeInTheDocument();
-    userEvent.click(startBtn);
-
-    expect(history.location.pathname).toBe('/foods/52771/in-progress');
+    checkboxList.forEach((checkbox) => {
+      userEvent.click(checkbox);
+      expect(checkbox.checked).toBe(true);
+    });
   });
 });
