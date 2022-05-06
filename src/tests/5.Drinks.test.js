@@ -4,9 +4,9 @@ import { act } from 'react-dom/test-utils';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import Foods from '../pages/Foods';
+import Drinks from '../pages/Drinks';
 import SearchProvider from '../context/SearchProvider';
-import { meals } from '../../cypress/mocks/mealCategories';
+import { drinks } from '../../cypress/mocks/drinkCategories';
 
 const MAX_FILTERS = 5;
 const MAX_CARDS = 12;
@@ -15,27 +15,27 @@ const fetchMock = require('../../cypress/mocks/fetch');
 // global.fetch = jest.fn(fetchMock);
 global.fetch = fetchMock;
 
-describe('4 - Testa na tela de Foods se'
+describe('5 - Testa na tela de Drinks se'
   + ' ', () => {
-  it('4.1 - A tela carrega os filtros de comidas corretamente'
+  it('5.1 - A tela carrega os filtros de bebidas corretamente'
       + '  e redireciona para o filtro clicado', async () => {
     await act(async () => {
       render(
         <SearchProvider>
-          <Foods title="Foods" />
+          <Drinks title="Drinks" />
         </SearchProvider>,
       );
     });
     // render(
     //   <SearchProvider>
-    //     <Foods title="Foods" />
+    //     <Drinks title="Drinks" />
     //   </SearchProvider>,
     // );
 
-    let categories = meals.map(({ strCategory }) => strCategory);
+    let categories = drinks.map(({ strCategory }) => strCategory);
     categories = categories.slice(0, MAX_FILTERS);
-    categories.forEach((categorie) => {
-      const filterBtn = screen.getByTestId(`${categorie}-category-filter`);
+    categories.forEach((category) => {
+      const filterBtn = screen.getByTestId(`${category}-category-filter`);
       expect(filterBtn).toBeInTheDocument();
 
       userEvent.click(filterBtn);
@@ -47,29 +47,29 @@ describe('4 - Testa na tela de Foods se'
     expect(allFilterBtn).toBeInTheDocument();
   });
 
-  it('4.2 - A tela carrega as comidas sem filtro'
+  it('5.2 - A tela carrega as bebidas sem filtro'
       + ' ', async () => {
     render(
       <SearchProvider>
-        <Foods title="Foods" />
+        <Drinks title="Drinks" />
       </SearchProvider>,
     );
 
-    const goatFilterBtn = await screen.findByTestId('Goat-category-filter');
-    const burekRecipe = await screen.findByRole('img', { name: /corba/i });
+    const cocktailFilterBtn = await screen.findByTestId('Cocktail-category-filter');
+    const ggRecipe = await screen.findByRole('img', { name: /gg/i });
 
-    expect(goatFilterBtn).toBeInTheDocument();
-    expect(burekRecipe).toBeInTheDocument();
+    expect(cocktailFilterBtn).toBeInTheDocument();
+    expect(ggRecipe).toBeInTheDocument();
   });
 
-  it('4.3 - O usuário é redirecionado para a tela de detalhes'
-      + ' ao selecionar um card', async () => {
+  it('5.3 - O usuário é redirecionado para a tela de detalhes'
+  + ' ao selecionar um card', async () => {
     const history = createMemoryHistory();
     await act(async () => {
       render(
         <Router history={ history }>
           <SearchProvider>
-            <Foods title="Foods" />
+            <Drinks title="Drinks" />
           </SearchProvider>
         </Router>,
       );
@@ -80,20 +80,6 @@ describe('4 - Testa na tela de Foods se'
 
     userEvent.click(firstCard);
 
-    expect(history.location.pathname).toBe('/foods/52978');
+    expect(history.location.pathname).toBe('/drinks/17222');
   });
-});
-
-it('4.4 - O fetch é chamado conforme solicitado'
-    + ' ', async () => {
-  global.fetch = jest.fn(fetchMock);
-  render(
-    <SearchProvider>
-      <Foods title="Foods" />
-    </SearchProvider>,
-  );
-
-  expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-
-  expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
 });

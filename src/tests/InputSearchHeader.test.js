@@ -143,28 +143,28 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
   });
 
-  it('13.7 - Verifica se lista de comidas é atualizada '
-  + 'quando solicitado ingrediente correspondente', async () => {
-    render(
+  // it('13.7 - Verifica se lista de comidas é atualizada '
+  // + 'quando solicitado ingrediente correspondente', async () => {
+  //   render(
 
-      <SearchProvider>
-        <InputSearchHeader title="Foods" />
-      </SearchProvider>,
-    );
-    const searchInput = await screen.findByTestId(SEARCH_INPUT);
-    const nameRadio = await screen.findByTestId(NAME_RADIO);
-    expect(searchInput).toBeInTheDocument();
+  //     <SearchProvider>
+  //       <InputSearchHeader title="Foods" />
+  //     </SearchProvider>,
+  //   );
+  //   const searchInput = await screen.findByTestId(SEARCH_INPUT);
+  //   const nameRadio = await screen.findByTestId(NAME_RADIO);
+  //   expect(searchInput).toBeInTheDocument();
 
-    const searchBtn = await screen.findByTestId(SEARCH_BUTTON);
-    expect(searchBtn).toBeInTheDocument();
-    expect(nameRadio).toBeInTheDocument();
+  //   const searchBtn = await screen.findByTestId(SEARCH_BUTTON);
+  //   expect(searchBtn).toBeInTheDocument();
+  //   expect(nameRadio).toBeInTheDocument();
 
-    userEvent.type(searchInput, 'Arrabiata');
-    userEvent.click(nameRadio);
-    userEvent.click(searchBtn);
+  //   userEvent.type(searchInput, 'Arrabiata');
+  //   userEvent.click(nameRadio);
+  //   userEvent.click(searchBtn);
 
-    expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
-  });
+  //   expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
+  // });
 
   // it('13.7 Verifica se função setFoods é chamada', () => {
   //   const { setFoods } = useContext;
@@ -189,7 +189,7 @@ describe('13 - Implemente os elementos da barra de busca'
   //   expect(setFoods).toBeCalled();
   // });
 
-  it('13.8 - Verifica se ao realizar busca que não encontra '
+  it('13.7 - Verifica se ao realizar busca que não encontra '
   + 'receita, um alerta é emitido informando a mensagem correspondente', async () => {
     // global.fetch = jest.fn(() => Promise.resolve({
     //   json: () => Promise.resolve({ meals: null }),
