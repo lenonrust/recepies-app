@@ -6,13 +6,13 @@ import userEvent from '@testing-library/user-event';
 import SearchProvider from '../context/SearchProvider';
 import Routes from '../helpers/Routes';
 
-const CONST_8 = 8;
+const CONST_3 = 3;
 
-describe('8 - Testa na tela de detalhes de comidas se'
+describe('9 - Testa na tela de detalhes de bebidas se'
   + ' ', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('8.1 - Os checkboxes'
+  it('9.1 - Os checkboxes'
       + ' funcionam como esperado', async () => {
     const history = createMemoryHistory();
     await act(async () => {
@@ -24,10 +24,10 @@ describe('8 - Testa na tela de detalhes de comidas se'
         </Router>,
       );
     });
-    history.push('/foods/52771/in-progress');
+    history.push('/drinks/178319/in-progress');
 
     const checkboxList = await screen.findAllByRole('checkbox');
-    expect(checkboxList).toHaveLength(CONST_8);
+    expect(checkboxList).toHaveLength(CONST_3);
 
     checkboxList.forEach((checkbox) => {
       userEvent.click(checkbox);

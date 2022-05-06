@@ -35,14 +35,14 @@ describe('7 - Testa na tela de detalhes de bebidas se'
     userEvent.click(firstCard);
 
     const firstIngredient = await screen.findByTestId('0-ingredient-name-and-measure');
-    const arrabiataTitle = await screen.findByRole('heading', { name: /gg/i });
+    const ggTitle = await screen.findByRole('heading', { name: /gg/i });
     const shareBtn = await screen.findByRole('img', { name: /shareicon/i });
     const favBtn = await screen.findByRole('button', { name: /blackhearticon/i });
     const instructions = await screen.findByTestId('instructions');
     const recommendationCard = await screen.findByRole('img', { name: /corba/i });
 
     expect(firstIngredient).toBeInTheDocument();
-    expect(arrabiataTitle).toBeInTheDocument();
+    expect(ggTitle).toBeInTheDocument();
     expect(shareBtn).toBeInTheDocument();
     expect(favBtn).toBeInTheDocument();
     expect(instructions).toBeInTheDocument();
