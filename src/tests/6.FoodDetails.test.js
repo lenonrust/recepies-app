@@ -50,32 +50,15 @@ describe('6 - Testa na tela de detalhes de comidas se'
     expect(instructions).toBeInTheDocument();
     expect(video).toBeInTheDocument();
     expect(recommendationCard);
-  });
 
-  it('6.2 - Os botões'
-      + ' funcionam como esperado', async () => {
-    const history = createMemoryHistory();
-    await act(async () => {
-      render(
-        <Router history={ history }>
-          <SearchProvider>
-            <Routes />
-          </SearchProvider>
-        </Router>,
-      );
-    });
-    history.push('/foods/');
-
-    const firstCard = await screen.findByTestId('0-recipe-card');
-    expect(firstCard).toBeInTheDocument();
     history.push('/foods/52771');
 
     expect(history.location.pathname).toBe('/foods/52771');
 
-    const favBtn = await screen.findByRole('button', { name: /blackhearticon/i });
+    const favBtn2 = await screen.findByRole('button', { name: /blackhearticon/i });
 
-    userEvent.click(favBtn);
-    userEvent.click(favBtn);
+    userEvent.click(favBtn2);
+    userEvent.click(favBtn2);
 
     const startBtn = await screen.findByRole('button', { name: /start recipe/i });
     expect(startBtn).toBeInTheDocument();

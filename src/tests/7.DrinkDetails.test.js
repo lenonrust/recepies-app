@@ -47,37 +47,20 @@ describe('7 - Testa na tela de detalhes de bebidas se'
     expect(favBtn).toBeInTheDocument();
     expect(instructions).toBeInTheDocument();
     expect(recommendationCard);
-  });
 
-  it('7.2 - Os elementos são renderizados'
-      + ' conforme esperado', async () => {
-    const history = createMemoryHistory();
-    await act(async () => {
-      render(
-        <Router history={ history }>
-          <SearchProvider>
-            <Routes />
-          </SearchProvider>
-        </Router>,
-      );
-    });
-    history.push('/drinks/');
+    history.push('/drinks/15997');
 
-    const firstCard = await screen.findByTestId('0-recipe-card');
-    expect(firstCard).toBeInTheDocument();
-    history.push('/drinks/178319');
+    expect(history.location.pathname).toBe('/drinks/15997');
 
-    expect(history.location.pathname).toBe('/drinks/178319');
+    const favBtn2 = await screen.findByRole('button', { name: /blackhearticon/i });
 
-    const favBtn = await screen.findByRole('button', { name: /blackhearticon/i });
-
-    userEvent.click(favBtn);
-    userEvent.click(favBtn);
+    userEvent.click(favBtn2);
+    userEvent.click(favBtn2);
 
     const startBtn = await screen.findByRole('button', { name: /start recipe/i });
     expect(startBtn).toBeInTheDocument();
     userEvent.click(startBtn);
 
-    expect(history.location.pathname).toBe('/drinks/178319/in-progress');
+    expect(history.location.pathname).toBe('/drinks/15997/in-progress');
   });
 });
