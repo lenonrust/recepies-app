@@ -20,9 +20,9 @@ const SEARCH_BUTTON = 'exec-search-btn';
 // const soupMeals = require('../../cypress/mocks/soupMeals');
 // const ginDrinks = require('../../cypress/mocks/ginDrinks');
 
-describe('13 - Implemente os elementos da barra de busca'
+describe('16 - Implemente os elementos da barra de busca'
   + ' respeitando os atributos descritos no protótipo', () => {
-  it('13.1 - Tem os data-testids tanto da barra'
+  it('16.1 - Tem os data-testids tanto da barra'
       + ' de busca quanto de todos os radio-buttons', () => {
     render(
       <SearchProvider>
@@ -42,7 +42,7 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(firstLetterRadio).toBeInTheDocument();
     expect(searchBtn).toBeInTheDocument();
   });
-  it('13.2 - Verifica busca por ingrediente', () => {
+  it('16.2 - Verifica busca por ingrediente', () => {
     render(
       <SearchProvider>
         <InputSearchHeader title="Foods" />
@@ -60,7 +60,7 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
   });
 
-  it('13.3 - Verifica busca por nome', async () => {
+  it('16.3 - Verifica busca de comida por nome', async () => {
     render(
       <SearchProvider>
         <InputSearchHeader title="Foods" />
@@ -82,7 +82,7 @@ describe('13 - Implemente os elementos da barra de busca'
   //   expect(leblebiSoup).toBeInTheDocument();
   });
 
-  it('13.4 - Verifica busca por letra', () => {
+  it('16.4 - Verifica busca de foods por letra', () => {
     render(
       <SearchProvider>
         <InputSearchHeader title="Foods" />
@@ -100,7 +100,7 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?f=a');
   });
 
-  it('13.5 - Verifica se ao realizar busca por letra digitando mais de 1 letra '
+  it('16.5 - Verifica se ao realizar busca por letra digitando mais de 1 letra '
   + 'é retornado um alerta informando com o texto esperado', () => {
     render(
       <SearchProvider>
@@ -120,7 +120,7 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(alert).toBeCalledWith(oneCharacterErrorMSG);
   });
 
-  it('13.6 - Verifica se ao encontrar apenas uma receita a '
+  it('16.6 - Verifica se ao encontrar apenas uma receita a '
   + 'página é redirecionada para a página de detalhes', async () => {
     render(
 
@@ -143,30 +143,30 @@ describe('13 - Implemente os elementos da barra de busca'
     expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
   });
 
-  it('13.7 - Verifica se lista de comidas é atualizada '
-  + 'quando solicitado ingrediente correspondente', async () => {
-    render(
+  // it('16.7 - Verifica se lista de comidas é atualizada '
+  // + 'quando solicitado ingrediente correspondente', async () => {
+  //   render(
 
-      <SearchProvider>
-        <InputSearchHeader title="Foods" />
-      </SearchProvider>,
-    );
-    const searchInput = await screen.findByTestId(SEARCH_INPUT);
-    const nameRadio = await screen.findByTestId(NAME_RADIO);
-    expect(searchInput).toBeInTheDocument();
+  //     <SearchProvider>
+  //       <InputSearchHeader title="Foods" />
+  //     </SearchProvider>,
+  //   );
+  //   const searchInput = await screen.findByTestId(SEARCH_INPUT);
+  //   const nameRadio = await screen.findByTestId(NAME_RADIO);
+  //   expect(searchInput).toBeInTheDocument();
 
-    const searchBtn = await screen.findByTestId(SEARCH_BUTTON);
-    expect(searchBtn).toBeInTheDocument();
-    expect(nameRadio).toBeInTheDocument();
+  //   const searchBtn = await screen.findByTestId(SEARCH_BUTTON);
+  //   expect(searchBtn).toBeInTheDocument();
+  //   expect(nameRadio).toBeInTheDocument();
 
-    userEvent.type(searchInput, 'Arrabiata');
-    userEvent.click(nameRadio);
-    userEvent.click(searchBtn);
+  //   userEvent.type(searchInput, 'Arrabiata');
+  //   userEvent.click(nameRadio);
+  //   userEvent.click(searchBtn);
 
-    expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
-  });
+  //   expect(fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
+  // });
 
-  // it('13.7 Verifica se função setFoods é chamada', () => {
+  // it('16.7 Verifica se função setFoods é chamada', () => {
   //   const { setFoods } = useContext;
   //   render(
   //     <SearchProvider>
@@ -189,7 +189,7 @@ describe('13 - Implemente os elementos da barra de busca'
   //   expect(setFoods).toBeCalled();
   // });
 
-  it('13.8 - Verifica se ao realizar busca que não encontra '
+  it('16.7 - Verifica se ao realizar busca que não encontra '
   + 'receita, um alerta é emitido informando a mensagem correspondente', async () => {
     // global.fetch = jest.fn(() => Promise.resolve({
     //   json: () => Promise.resolve({ meals: null }),
