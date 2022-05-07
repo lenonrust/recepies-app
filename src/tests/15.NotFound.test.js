@@ -12,7 +12,7 @@ describe('15 - Testa se', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
 
-  it('14.1 - Ao seguir para uma URL desconhecida a página'
+  it('15.1 - Ao seguir para uma URL desconhecida a página'
   + ' NotFound renderiza corretamente', async () => {
     await act(async () => {
       renderWithRouterAndProvider(<Routes />);
