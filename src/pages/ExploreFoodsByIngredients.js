@@ -29,6 +29,13 @@ function ExploreFoodsbyIngredients() {
   const handleSearchIngredient = (ingredient) => {
     setIngredient(ingredient);
     history.push('/foods');
+    console.log('TRYBE');
+    console.log('É');
+    console.log('BOM');
+    console.log('D');
+    console.log('+');
+    console.log('PARTIU');
+    console.log('BACKEND!!');
   };
   return (
     <div className="explore-ingredients-main-container">

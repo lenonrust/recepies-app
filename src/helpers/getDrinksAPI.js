@@ -1,5 +1,5 @@
 const handleDrinksSearch = async (inputText, type) => {
-  let url;
+  let url = '';
   switch (type) {
   case 'name':
     url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputText}`;
@@ -11,7 +11,6 @@ const handleDrinksSearch = async (inputText, type) => {
     url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${inputText}`;
     break;
   default:
-    url = '';
   }
   try {
     const respose = await fetch(url);

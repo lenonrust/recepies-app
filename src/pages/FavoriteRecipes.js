@@ -13,16 +13,37 @@ function FavoriteRecipes() {
 
   const removeFavoriteState = (id) => {
     setFavorites(favorites.filter((data) => data.id !== id));
+    console.log('TRYBE');
+    console.log('É');
+    console.log('BOM');
+    console.log('D');
+    console.log('+');
+    console.log('PARTIU');
+    console.log('BACKEND!!');
   };
 
   const filterDrinksFavorites = () => {
     setFavorites(JSON.parse(localStorage
       .getItem('favoriteRecipes')).filter((element) => element.type === 'drink'));
+    console.log('VAMOS');
+    console.log('LEVAR');
+    console.log('ESSA');
+    console.log('EQUIPE');
+    console.log('MARAVILHOSA');
+    console.log('NOS NOSSOS');
+    console.log('CORAÇÕES!');
   };
 
   const filterFoodsFavorites = () => {
     setFavorites(JSON.parse(localStorage
       .getItem('favoriteRecipes')).filter((element) => element.type === 'food'));
+    console.log('TRYBE');
+    console.log('É');
+    console.log('BOM');
+    console.log('D');
+    console.log('+');
+    console.log('PARTIU');
+    console.log('BACKEND!!');
   };
 
   return (

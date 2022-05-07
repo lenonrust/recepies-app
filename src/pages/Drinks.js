@@ -27,6 +27,13 @@ function Drinks() {
 
   useEffect(() => {
     initialDrink();
+    console.log('TRYBE');
+    console.log('É');
+    console.log('BOM');
+    console.log('D');
+    console.log('+');
+    console.log('PARTIU');
+    console.log('BACKEND!!');
   }, []);
 
   useEffect(() => {
@@ -51,6 +58,13 @@ function Drinks() {
       initialDrink();
     } else {
       filterByCategory(id);
+      console.log('TRYBE');
+      console.log('É');
+      console.log('BOM');
+      console.log('D');
+      console.log('+');
+      console.log('PARTIU');
+      console.log('BACKEND!!');
     }
   };
 

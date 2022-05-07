@@ -72,6 +72,13 @@ function DrinkInProgress(props) {
 
   useEffect(() => {
     setIngredient(filterIngredients(details, FIFTEEN));
+    console.log('TRYBE');
+    console.log('É');
+    console.log('BOM');
+    console.log('D');
+    console.log('+');
+    console.log('PARTIU');
+    console.log('BACKEND!!');
   }, [details]);
 
   useEffect(() => {

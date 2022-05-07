@@ -13,7 +13,7 @@ const arrabiataPath = '/foods/52771';
 const aquamarinePath = '/drinks/178319';
 const favoriteBtn = 'favorite-btn';
 const favoriteRecipes = '/favorite-recipes';
-const spicyArrabiataPenne = 'Spicy Arrabiata Penne';
+const spicyArrabiataPenne = /Spicy Arrabiata Penne/i;
 
 describe('13 - Testa se', () => {
   const { getComputedStyle } = window;

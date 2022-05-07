@@ -23,6 +23,13 @@ function DrinkDetails(props) {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (localData && localData.some((element) => element.id === id)) {
       setFavBtn(true);
+      console.log('TRYBE');
+      console.log('É');
+      console.log('BOM');
+      console.log('D');
+      console.log('+');
+      console.log('PARTIU');
+      console.log('BACKEND!!');
     }
   };
 
