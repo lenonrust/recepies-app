@@ -16,15 +16,12 @@ function DoneRecipes() {
     switch (target.innerText) {
     case 'All':
       setRenderRecipes(doneRecipes);
-      console.log('All');
       break;
     case 'Food':
       setRenderRecipes(doneRecipes.filter((element) => element.type === 'food'));
-      console.log('Food');
       break;
     case 'Drinks':
       setRenderRecipes(doneRecipes.filter((element) => element.type === 'drink'));
-      console.log('Drinks');
       break;
     default:
       break;
