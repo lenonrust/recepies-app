@@ -10,13 +10,11 @@ const fetchMock = require('../../cypress/mocks/fetch');
 const exploreDrinksPath = '/explore/drinks';
 global.fetch = fetchMock;
 
-describe('10 - Testa na tela de explorar se'
-  + ' ', () => {
+describe('11 - Testa na tela de explorar se', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
 
-  it('10.1 - A tela Explore Drinks contém os elementos conforme'
-      + ' esperado', async () => {
+  it('11.1 - A tela Explore Drinks contém os elementos conforme esperado', async () => {
     await act(async () => {
       renderWithRouterAndProvider(<Routes />);
     });
@@ -39,29 +37,28 @@ describe('10 - Testa na tela de explorar se'
     expect(surpriseBtn).toBeInTheDocument();
   });
 
-  it('10.2 - A tela Explore Drinks by Ingredient contém os elementos conforme'
-      + ' esperado', async () => {
-    await act(async () => {
-      renderWithRouterAndProvider(<Routes />);
+  it('11.2 - A tela Explore Drinks by Ingredient contém os elementos conforme esperado',
+    async () => {
+      await act(async () => {
+        renderWithRouterAndProvider(<Routes />);
+      });
+      history.push(exploreDrinksPath);
+
+      const ingredientBtn = await screen.findByRole('button', { name: /by ingredient/i });
+      userEvent.click(ingredientBtn);
+
+      const perfilBtn = await screen.findByRole('button', { name: /profile-icon/i });
+      const drinkBtn = screen.getByRole('button', { name: /drink-icon/i });
+      const firstIngredient = screen.getByTestId('0-ingredient-card');
+
+      expect(firstIngredient).toBeInTheDocument();
+      expect(perfilBtn).toBeInTheDocument();
+      expect(drinkBtn).toBeInTheDocument();
+
+      userEvent.click(firstIngredient);
     });
-    history.push(exploreDrinksPath);
 
-    const ingredientBtn = await screen.findByRole('button', { name: /by ingredient/i });
-    userEvent.click(ingredientBtn);
-
-    const perfilBtn = await screen.findByRole('button', { name: /profile-icon/i });
-    const drinkBtn = screen.getByRole('button', { name: /drink-icon/i });
-    const firstIngredient = screen.getByTestId('0-ingredient-card');
-
-    expect(firstIngredient).toBeInTheDocument();
-    expect(perfilBtn).toBeInTheDocument();
-    expect(drinkBtn).toBeInTheDocument();
-
-    userEvent.click(firstIngredient);
-  });
-
-  it('10.3 - O botão Surprise Me funciona'
-      + ' conforme esperado', async () => {
+  it('11.3 - O botão Surprise Me funciona conforme esperado', async () => {
     await act(async () => {
       renderWithRouterAndProvider(<Routes />);
     });
