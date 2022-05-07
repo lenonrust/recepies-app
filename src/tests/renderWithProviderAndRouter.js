@@ -4,17 +4,16 @@ import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 import SearchProvider from '../context/SearchProvider';
 
-const renderWithRouterAndProvider = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(
-      <Router history={ history }>
-        <SearchProvider>
-          {component}
-        </SearchProvider>
-      </Router>,
-    ),
-    history,
-  });
-};
+export const history = createMemoryHistory();
+
+const renderWithRouterAndProvider = (component) => ({
+  ...render(
+    <Router history={ history }>
+      <SearchProvider>
+        {component}
+      </SearchProvider>
+    </Router>,
+  ),
+  history,
+});
 export default renderWithRouterAndProvider;

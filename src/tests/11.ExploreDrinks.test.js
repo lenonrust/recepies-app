@@ -1,11 +1,9 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import SearchProvider from '../context/SearchProvider';
 import Routes from '../helpers/Routes';
+import renderWithRouterAndProvider, { history } from './renderWithProviderAndRouter';
 
 const fetchMock = require('../../cypress/mocks/fetch');
 
@@ -19,15 +17,8 @@ describe('10 - Testa na tela de explorar se'
 
   it('10.1 - A tela Explore Drinks contém os elementos conforme'
       + ' esperado', async () => {
-    const history = createMemoryHistory();
     await act(async () => {
-      render(
-        <Router history={ history }>
-          <SearchProvider>
-            <Routes />
-          </SearchProvider>
-        </Router>,
-      );
+      renderWithRouterAndProvider(<Routes />);
     });
     history.push('/explore/');
 
@@ -50,15 +41,8 @@ describe('10 - Testa na tela de explorar se'
 
   it('10.2 - A tela Explore Drinks by Ingredient contém os elementos conforme'
       + ' esperado', async () => {
-    const history = createMemoryHistory();
     await act(async () => {
-      render(
-        <Router history={ history }>
-          <SearchProvider>
-            <Routes />
-          </SearchProvider>
-        </Router>,
-      );
+      renderWithRouterAndProvider(<Routes />);
     });
     history.push(exploreDrinksPath);
 
@@ -78,15 +62,8 @@ describe('10 - Testa na tela de explorar se'
 
   it('10.3 - O botão Surprise Me funciona'
       + ' conforme esperado', async () => {
-    const history = createMemoryHistory();
     await act(async () => {
-      render(
-        <Router history={ history }>
-          <SearchProvider>
-            <Routes />
-          </SearchProvider>
-        </Router>,
-      );
+      renderWithRouterAndProvider(<Routes />);
     });
     history.push(exploreDrinksPath);
 
