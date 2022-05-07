@@ -15,8 +15,8 @@ describe('7 - Testa na tela de detalhes de bebidas se'
   + ' ', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('7.1 - A tela carrega os filtros de bebidas corretamente'
-      + '  e redireciona para o filtro clicado', async () => {
+  it('7.1 - A tela carrega os cards de bebida corretamente'
+      + '  e redireciona para o card escolhido', async () => {
     const history = createMemoryHistory();
     await act(async () => {
       render(
@@ -49,8 +49,8 @@ describe('7 - Testa na tela de detalhes de bebidas se'
     expect(recommendationCard);
   });
 
-  it('7.2 - Os botões'
-      + ' funcionam como esperado', async () => {
+  it('7.2 - Os elementos são renderizados'
+      + ' conforme esperado', async () => {
     const history = createMemoryHistory();
     await act(async () => {
       render(
