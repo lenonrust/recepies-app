@@ -15,8 +15,8 @@ describe('6 - Testa na tela de detalhes de comidas se'
   + ' ', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
-  it('6.1 - A tela carrega os filtros de comidas corretamente'
-      + '  e redireciona para o filtro clicado', async () => {
+  it('6.1 - A tela carrega os cards de comida corretamente'
+      + '  e redireciona para o card escolhido', async () => {
     const history = createMemoryHistory();
     await act(async () => {
       render(

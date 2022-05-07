@@ -8,7 +8,7 @@ import Routes from '../helpers/Routes';
 
 const CONST_8 = 8;
 
-describe('8 - Testa na tela de detalhes de comidas se'
+describe('8 - Testa na tela de comidas em progresso se'
   + ' ', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
