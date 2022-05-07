@@ -34,4 +34,23 @@ describe('8 - Testa na tela de comidas em progresso se'
       expect(checkbox.checked).toBe(true);
     });
   });
+
+  it('8.2 - Se é possível favoritar da tela de comida em progresso', async () => {
+    const history = createMemoryHistory();
+    await act(async () => {
+      render(
+        <Router history={ history }>
+          <SearchProvider>
+            <Routes />
+          </SearchProvider>
+        </Router>,
+      );
+      history.push('/foods/52771/in-progress');
+
+      const favBtn = await screen.findByTestId('favorite-btn');
+      expect(favBtn).toBeInTheDocument();
+      userEvent.click(favBtn);
+      userEvent.click(favBtn);
+    });
+  });
 });
