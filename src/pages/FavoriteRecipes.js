@@ -55,27 +55,29 @@ function FavoriteRecipes() {
           Drinks
         </button>
       </div>
-      {
-        favorites && favorites.map((favorite, index) => (
-          favorite.type === 'food'
-            ? (
-              <div key={ `favorite-${index}` }>
-                <FavoriteFoodCard
-                  favorite={ favorite }
-                  index={ index }
-                  removeFavoriteState={ removeFavoriteState }
-                />
-              </div>)
-            : (
-              <div key={ `favorite-${index}` }>
-                <FavoriteDrinkCard
-                  favorite={ favorite }
-                  index={ index }
-                  removeFavoriteState={ removeFavoriteState }
-                />
-              </div>)
-        ))
-      }
+      <div className="favorites-recipes-main-container">
+        {
+          favorites && favorites.map((favorite, index) => (
+            favorite.type === 'food'
+              ? (
+                <div className="favorite-main-container" key={ `favorite-${index}` }>
+                  <FavoriteFoodCard
+                    favorite={ favorite }
+                    index={ index }
+                    removeFavoriteState={ removeFavoriteState }
+                  />
+                </div>)
+              : (
+                <div className="favorite-main-container" key={ `favorite-${index}` }>
+                  <FavoriteDrinkCard
+                    favorite={ favorite }
+                    index={ index }
+                    removeFavoriteState={ removeFavoriteState }
+                  />
+                </div>)
+          ))
+        }
+      </div>
     </div>
   );
 }

@@ -28,45 +28,61 @@ function FavoriteFoodCard({ favorite, index, removeFavoriteState }) {
   };
 
   return (
-    <div>
-      <button type="button" onClick={ () => history.push(`/foods/${favorite.id}`) }>
+    <div className="favorite-container">
+      <button
+        className="favorites-img-btn"
+        type="button"
+        onClick={ () => history.push(`/foods/${favorite.id}`) }
+      >
         <img
-          width="100px"
-          height="100px"
+          className="favorites-img"
           data-testid={ `${index}-horizontal-image` }
           src={ favorite.image }
           alt={ favorite.name }
         />
       </button>
-      <button
-        type="button"
-        onClick={ toShare }
-      >
-        <img
-          src={ shareIcon }
-          data-testid={ `${index}-horizontal-share-btn` }
-          alt="shareIcon"
-        />
-      </button>
-      { timer && <p>Link copied!</p>}
-      <button
-        type="button"
-        onClick={ RemoveFavoriteRecipe }
-      >
-        <img
-          src={ blackHeartIcon }
-          alt="blackHeartIcon"
-          data-testid={ `${index}-horizontal-favorite-btn` }
-        />
-      </button>
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        { `${favorite.nationality} - ${favorite.category}` }
-      </p>
-      <button type="button" onClick={ () => history.push(`/foods/${favorite.id}`) }>
-        <p data-testid={ `${index}-horizontal-name` }>{ favorite.name }</p>
-      </button>
+      <div className="share-fav-container">
+        <button
+          className="share-fav-btn share"
+          type="button"
+          onClick={ toShare }
+        >
+          <img
+            src={ shareIcon }
+            data-testid={ `${index}-horizontal-share-btn` }
+            alt="shareIcon"
+          />
+        </button>
+        <button
+          className="share-fav-btn favorite"
+          type="button"
+          onClick={ RemoveFavoriteRecipe }
+        >
+          <img
+            src={ blackHeartIcon }
+            alt="blackHeartIcon"
+            data-testid={ `${index}-horizontal-favorite-btn` }
+          />
+        </button>
+      </div>
+      <div className="favorite-title-name">
+        <button
+          type="button"
+          onClick={ () => history.push(`/foods/${favorite.id}`) }
+          className="fav-btn-name"
+        >
+          <p data-testid={ `${index}-horizontal-name` }>{ favorite.name }</p>
+        </button>
+        <p
+          className="category"
+          data-testid={ `${index}-horizontal-top-text` }
+        >
+          { `${favorite.nationality} - ${favorite.category}` }
+        </p>
+        <div className="link-timer">
+          { timer && <p className="paragraph">Link copied!</p>}
+        </div>
+      </div>
     </div>
   );
 }
