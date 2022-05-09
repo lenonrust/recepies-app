@@ -121,7 +121,8 @@ function FoodDetails(props) {
           className="title-details"
           data-testid="recipe-title"
         >
-          { details.strMeal && details.strMeal.toUpperCase()}
+          { details && details.strMeal }
+          {/* { details.strMeal && details.strMeal.toUpperCase()} */}
 
         </h2>
         <div className="header-instructions-buttons">
