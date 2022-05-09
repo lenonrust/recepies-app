@@ -23,13 +23,6 @@ function FoodDetails(props) {
     const localData = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (localData && localData.some((element) => element.id === id)) {
       setFavBtn(true);
-      console.log('TRYBE');
-      console.log('É');
-      console.log('BOM');
-      console.log('D');
-      console.log('+');
-      console.log('PARTIU');
-      console.log('BACKEND!!');
     }
   };
 
@@ -121,8 +114,8 @@ function FoodDetails(props) {
           className="title-details"
           data-testid="recipe-title"
         >
-          { details && details.strMeal }
-          {/* { details.strMeal && details.strMeal.toUpperCase()} */}
+          {/* { details && details.strMeal } */}
+          { details.strMeal && details.strMeal.toUpperCase()}
 
         </h2>
         <div className="header-instructions-buttons">

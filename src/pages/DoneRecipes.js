@@ -14,13 +14,6 @@ function DoneRecipes() {
   };
 
   const toRenderRecipes = ({ target }) => {
-    console.log('TRYBE');
-    console.log('É');
-    console.log('BOM');
-    console.log('D');
-    console.log('+');
-    console.log('PARTIU');
-    console.log('BACKEND!!');
     switch (target.innerText) {
     case 'All':
       setRenderRecipes(doneRecipes);

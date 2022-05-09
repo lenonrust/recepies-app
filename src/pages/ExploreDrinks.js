@@ -11,13 +11,6 @@ function ExploreDrinks() {
     const response = await fetch(url);
     const { drinks } = await response.json();
     setSurprise(drinks[0]);
-    console.log('TRYBE');
-    console.log('É');
-    console.log('BOM');
-    console.log('D');
-    console.log('+');
-    console.log('PARTIU');
-    console.log('BACKEND!!');
   };
 
   useEffect(() => {

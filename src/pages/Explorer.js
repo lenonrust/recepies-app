@@ -6,13 +6,7 @@ import './Explorer.css';
 
 function Explorer() {
   const history = useHistory();
-  console.log('TRYBE');
-  console.log('É');
-  console.log('BOM');
-  console.log('D');
-  console.log('+');
-  console.log('PARTIU');
-  console.log('BACKEND!!');
+
   return (
     <div className="main-container">
       <Header title="Explore" />

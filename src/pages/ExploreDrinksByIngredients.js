@@ -27,13 +27,6 @@ function ExploreDrinksbyIngredients() {
   }
   const handleSearchIngredient = (ingredient) => {
     setIngredient(ingredient);
-    console.log('TRYBE');
-    console.log('É');
-    console.log('BOM');
-    console.log('D');
-    console.log('+');
-    console.log('PARTIU');
-    console.log('BACKEND!!');
     history.push('/drinks');
   };
   return (
